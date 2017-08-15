@@ -1,0 +1,8 @@
+museum_ticket:
+    resource: "@MuseumTicketBundle/Controller"
+    type: annotation
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation

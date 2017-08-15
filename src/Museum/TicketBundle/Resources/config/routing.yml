@@ -1,0 +1,3 @@
+museum_ticket_homepage:
+    path:     /
+    defaults: { _controller: MuseumTicketBundle:Default:index }
