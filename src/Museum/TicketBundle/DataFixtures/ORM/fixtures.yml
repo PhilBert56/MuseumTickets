@@ -1,0 +1,5 @@
+Museum\TicketBundle\Entity\WorkingDay:
+
+    workingDay_{1..10} :
+        date : <dateTimeBetween("now","20 days")>
+        numberOfVisitors : <numberBetween(990, 1010)>
