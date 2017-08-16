@@ -1,6 +1,6 @@
 <?php
 
-namespace TicketBundle\Form;
+namespace Museum\TicketBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

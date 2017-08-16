@@ -1,6 +1,6 @@
 <?php
 
-namespace TicketBundle\Form;
+namespace Museum\TicketBundle\Form;
 
 //use Doctrine\DBAL\Types\DateType;
 use Symfony\Component\Form\AbstractType;
@@ -32,4 +32,3 @@ class TicketFolderFormType  extends AbstractType
 
 
 }
-
