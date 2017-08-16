@@ -175,7 +175,7 @@ class VisitorController extends Controller
 
         $row = 1;
 
-        $fileName = "..\src\TicketBundle\Data\museumPricing.csv";
+        $fileName = "..\src\Museum\TicketBundle\Data\museumPricing.csv";
 
         if (($handle = fopen($fileName, "r")) !== FALSE) {
 
