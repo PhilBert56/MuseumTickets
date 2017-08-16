@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h3>Votre commande</h3>
+
+
+    <div>
+        {% for ticket in tickets %}
+            <tr>
+                <td> Billet(s) pour :</td>
+                <td>Date = {{ ticket.dateOfVisit | date('d-m-Y') }}</td>
+                <td>Prénom = {{ ticket.visitor.firstName }}</td>
+                <td>Nom = {{ ticket.visitor.name }}</td>
+                <td>Date de naissance = {{ ticket.visitor.birthDate | date('d-m-Y') }}</td>
+                <td>Prix = {{ ticket.price }}</td>
+                <a href="{{ path('deleteVisitor', {'firstName' : ticket.visitor.firstName , 'lastName' : ticket.visitor.name })  }}" class="btn btn-primary">Retirer ce visiteur de la liste </a>
+                <br/><br/>
+            </tr>
+        {%  endfor %}
+    </div>
+
+    {{ form_start(recapAndPayForm)  }}
+    {{ form_widget(recapAndPayForm) }}
+
+    <br/>
+
+    <button type="submit" class ="btn btn-primary">Confirmer</button>
+
+    <a href="{{ path('visitor')  }}" class="btn btn-primary">Ajouter un visiteur</a>
+    <a href="{{ path('finalizeOrder')  }}" class="btn btn-primary">Payer</a>
+
+    {{ form_end(recapAndPayForm) }}
+
+{% endblock %}

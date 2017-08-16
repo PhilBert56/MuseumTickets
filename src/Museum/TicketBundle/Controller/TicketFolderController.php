@@ -17,12 +17,8 @@ class TicketFolderController extends Controller
       if ($request->isMethod('POST')) {
 
         $form->handleRequest($request);
+        return $this->redirectToRoute('visitor');
 
-        return $this->render('MuseumTicketBundle:Museum:ordertickets.html.twig', [
-            'orderForm' => $form->createView(),
-            'message1' => '',
-            'message2' => '',
-        ]);
       }
       return $this->render('MuseumTicketBundle:Museum:ordertickets.html.twig', [
             'orderForm' => $form->createView(),

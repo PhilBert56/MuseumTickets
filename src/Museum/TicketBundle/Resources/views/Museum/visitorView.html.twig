@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h3><span>Informations sur le visiteur</h3>
+
+    {{ form_start(visitorForm ) }}
+
+    {{ form_errors(visitorForm) }}
+
+
+
+    {{ form_widget(visitorForm) }}
+    <br/>
+
+    <button type="submit" class ="btn btn-primary">Confirmer</button>
+
+    <a href="{{ path('visitor') }}" class="btn btn-primary">Ajouter un autre visiteur </a>
+    <a href="{{ path('recapTickets') }}" class="btn btn-primary">Payer </a>
+
+
+    {{ form_end(visitorForm) }}
+    <br/>
+
+    <div>
+        {{ message1 }}
+        {{ message2 }}
+    </div>
+
+{% endblock %}

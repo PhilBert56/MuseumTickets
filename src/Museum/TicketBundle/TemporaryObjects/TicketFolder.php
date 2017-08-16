@@ -117,7 +117,6 @@ class TicketFolder
                     unset ($this->tickets [array_search($ticket, $this->tickets)]);
                     unset ($ticket);
 
-                    //$this->setTickets($this->tickets);
                     $this->session->set('ticketFolder', $this);
                 }
              }
@@ -125,22 +124,14 @@ class TicketFolder
 
     }
 
-
-
-
-
     public function getTickets(){
         return $this->tickets;
     }
 
-
     public function getTotal() {
     }
 
-
     public function emptyTicketFolder (){
     }
-
-
 
 }
