@@ -1,8 +1,6 @@
 <?php
 namespace Museum\TicketBundle\Form;
 namespace Museum\TicketBundle\Controller;
-//namespace TicketBundle\Controller;
-//namespace TicketBundle\TicketFolder;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -49,7 +47,7 @@ class VisitorController extends Controller
                 /* Si date infaisable */
                 if ($codeDateOk !== 0) {
                     $message1 = $this->getTranslatedMessage(1, 'fr');
-                    $message2 = $this->getRefusalMotivation($codeDateOk, 'fr');
+                    $message2 = $this->getRefusalMotivation($codeDateOk);
                     return $this->render('MuseumTicketBundle:Museum:visitorView.html.twig', [
                         'visitorForm' => $form->createView(),
                         'message1' => $message1 ,
@@ -65,7 +63,7 @@ class VisitorController extends Controller
                 if( $hourIsOkCode == 51 && !$ticket->getHalfDay()) {
                     /* l'utilisateur doit cocher demi-journée */
                     $message1 = $this->getTranslatedMessage(1, 'fr');
-                    $message2 = $this->getRefusalMotivation($hourIsOkCode, 'fr');
+                    $message2 = $this->getRefusalMotivation($hourIsOkCode);
                     return $this->render('MuseumTicketBundle:Museum:visitorView.html.twig', [
                         'visitorForm' => $form->createView(),
                         'message1' => $message1 ,
@@ -74,7 +72,7 @@ class VisitorController extends Controller
                 }
                 if( $hourIsOkCode == 52 ) {
                     $message1 = $this->getTranslatedMessage(1, 'fr');
-                    $message2 = $this->getRefusalMotivation($hourIsOkCode, 'fr');
+                    $message2 = $this->getRefusalMotivation($hourIsOkCode);
                     return $this->render('MuseumTicketBundle:Museum:visitorView.html.twig', [
                         'visitorForm' => $form->createView(),
                         'message1' => $message1 ,
@@ -157,21 +155,7 @@ class VisitorController extends Controller
 
         $price = -1;
 
-        /* otion 1 = pricing in BD */
-
-        /* ______________________________________________________
-        $em = $this->getDoctrine()->getManager();
-        $dbPricing = $em->getRepository('TicketBundle:Pricing')
-            ->findOneByPriceCode( $priceCode );
-
-        if (!$dbPricing) {
-            throw $this->createNotFoundException(
-                'No product found for price code '.$priceCode
-            );
-        } else $price = $dbPricing->getPrice();
-        ________________________________________________________*/
-
-        /* option 2 = princing in CSV file */
+        /* princing in CSV file museumPricing.csv */
 
         $row = 1;
 
@@ -425,8 +409,9 @@ class VisitorController extends Controller
 
 
 
-    public function getRefusalMotivation($codeRefus, $langue) {
+    public function getRefusalMotivation($codeRefus) {
 
+/* la traduction des messages en anglis est assurée par le traducteur des Symfony */
         $motifRefusFr = [
             0 => 'ok',
             1 => "La date selectionnée est dépassée",
@@ -441,18 +426,14 @@ class VisitorController extends Controller
             52 => "Trop tard pour commander un billet aujourd'hui"
         ];
 
-        if ($langue == 'fr'){
-            return $motifRefusFr[$codeRefus];
-        }
-        return "No translation available in this language";
+
+        return $motifRefusFr[$codeRefus];
+
     }
 
 
     public function getTranslatedMessage($messageCode, $langue) {
-        /*
-            Table des messages à traduire :
-            1 - Date invalide
-        */
+
 
         $translationFr = [
             1 => 'Vous ne pouvez pas commander de billet à cette date :',
