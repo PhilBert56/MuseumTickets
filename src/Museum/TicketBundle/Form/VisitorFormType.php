@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Validator\Constraints\Date;
 
 class VisitorFormType extends AbstractType
 {
@@ -16,13 +17,17 @@ class VisitorFormType extends AbstractType
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
+
     {
+      $today = new \DateTime();
+      $thisYear = $today->format('Y');
+
         $builder
             ->add('ticket', TicketType::class ,array('label' => 'Billet'))
             ->add('name',TextType::class,array('label' => 'Nom'))
             ->add('firstName',TextType::class,array('label' => 'Prénom'))
-            ->add('birthDate',      BirthdayType::class,array('label' => 'Date de naissance'))
-            ->add('country',      CountryType::class,array('label' => 'Pays'))
+            ->add('birthDate', BirthdayType::class,array('label' => 'Date de naissance', 'years'=> range(1917,$thisYear)))
+            ->add('country', CountryType::class,array('label' => 'Pays'))
             ->add('reducePrice', CheckboxType::class,  array('label' => 'Tarif Réduit', 'required' => false)    )
         ;
     }

@@ -36,6 +36,9 @@ class RecapOrderAndPayController extends Controller
         ;
         $form = $formBuilder->getForm();
 
+        $ticketFolder->setTotalAmount();
+        $totalAmount = $ticketFolder->getTotalAmount();
+
         if ($request->isMethod('POST')) {
 
             $form->handleRequest($request);
@@ -44,17 +47,18 @@ class RecapOrderAndPayController extends Controller
 
                 $ticketFolder->setCustomer($customer);
                 $session->set('ticketOrder', $ticketFolder);
-
             }
             return $this->render('MuseumTicketBundle:Museum:recapAndPay.html.twig', [
                 'recapAndPayForm' => $form->createView(),
-                'tickets'=>$tickets
+                'tickets'=>$tickets,
+                'total' =>$totalAmount
             ]);
         }
 
         return $this->render('MuseumTicketBundle:Museum:recapAndPay.html.twig',[
             'recapAndPayForm' => $form->createView(),
-            'tickets'=>$tickets
+            'tickets'=>$tickets,
+            'total' =>$totalAmount
         ]);
 
     }

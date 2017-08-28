@@ -29,7 +29,7 @@ class DeleteVisitorController extends Controller
         $lastName = $request->query->get('lastName');
 
         $ticketFolder->cancelVisitorAndAssociatedTicket($firstName, $lastName);
-
+        $totalAmount = $ticketFolder->getTotalAmount();
         $tickets = $ticketFolder->getTickets();
 
         if ( count ($tickets) == 0) {
@@ -48,7 +48,8 @@ class DeleteVisitorController extends Controller
 
         return $this->render('MuseumTicketBundle:Museum:recapAndPay.html.twig',[
             'recapAndPayForm' => $form->createView(),
-            'tickets'=>$tickets
+            'tickets'=>$tickets,
+            'total' => $totalAmount
         ]);
     }
 }

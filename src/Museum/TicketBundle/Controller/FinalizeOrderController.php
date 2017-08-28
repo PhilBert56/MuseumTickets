@@ -19,7 +19,22 @@ class FinalizeOrderController extends Controller
      * @Route("/FinalizeOrder", name="finalizeOrder")
      */
 
-    public function storeDataAction(Request $request)
+     public function checkoutAction(Request $request){
+
+       $session = $this->get('session');
+       $ticketFolder = $session->get('ticketFolder');
+       $totalAmount = $ticketFolder->gettotalAmount();
+       $customer = $ticketFolder->getCustomer();
+
+       return $this->render('MuseumTicketBundle:Museum:checkout.html.twig' , [
+           'total' =>$totalAmount,
+           'stripe_public_key' => $this->getParameter('stripe_public_key')
+       ]);
+
+     }
+
+
+    public function storeData(Request $request)
     {
 
         $session = $this->get('session');

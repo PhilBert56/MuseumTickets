@@ -1,25 +1,45 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
+<blockquote>
     <h3>Votre commande</h3>
 
-
-    <div>
+    <table class="pure-table pure-table-bordered">
+    <thead>
+            <tr>
+                <th>Date de la visite</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Date de naissance</th>
+                <th>Prix (€)</th>
+                <th>Annulation</th>
+            </tr>
+      </thead>
+        <tbody>
         {% for ticket in tickets %}
             <tr>
-                <td> Billet(s) pour :</td>
-                <td>Date = {{ ticket.dateOfVisit | date('d-m-Y') }}</td>
-                <td>Prénom = {{ ticket.visitor.firstName }}</td>
-                <td>Nom = {{ ticket.visitor.name }}</td>
-                <td>Date de naissance = {{ ticket.visitor.birthDate | date('d-m-Y') }}</td>
-                <td>Prix = {{ ticket.price }}</td>
-                <a href="{{ path('deleteVisitor', {'firstName' : ticket.visitor.firstName , 'lastName' : ticket.visitor.name })  }}" class="pure-button">Retirer ce visiteur de la liste </a>
-                <br/><br/>
+                <td>{{ ticket.dateOfVisit | date('d-m-Y') }}</td>
+                <td>{{ ticket.visitor.firstName }}</td>
+                <td>{{ ticket.visitor.name }}</td>
+                <td>{{ ticket.visitor.birthDate | date('d-m-Y') }}</td>
+                <td>{{ ticket.price }} € </td>
+                <td> <a href="{{ path('deleteVisitor',
+                     {'firstName' : ticket.visitor.firstName , 'lastName' : ticket.visitor.name })  }}"
+                     class="pure-button">Annuler</a>
+                </td>
             </tr>
         {%  endfor %}
-    </div>
 
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><strong>TOTAL</strong></td>
+        <td>{{ total }} € </td>
+        <td></td>
+        </tbody>
+      </table>
+      <br/>
+      <br/>
     {{ form_start(recapAndPayForm)  }}
     {{ form_widget(recapAndPayForm) }}
 
@@ -28,10 +48,25 @@
     <button type="submit" class ="pure-button">Confirmer</button>
 
     <a href="{{ path('visitor')  }}" class="pure-button">Ajouter un visiteur</a>
+
+    <form action="" method="POST">
+    <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_live_GoKh6VgFyGr3BjvOWdDR6QXC"
+    data-amount= {{total * 100}}
+    data-name="Euro"
+    data-description="Widget"
+    data-locale="auto">
+    </script>
+    </form>
+
+
     <a href="{{ path('finalizeOrder')  }}" class="pure-button">Payer</a>
+
 
     {{ form_end(recapAndPayForm) }}
 
+    </blockquote>
     <br/>
     <br/>
 
