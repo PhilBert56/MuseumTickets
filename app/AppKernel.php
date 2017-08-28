@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new Museum\TicketBundle\MuseumTicketBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

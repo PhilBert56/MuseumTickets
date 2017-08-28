@@ -12,6 +12,7 @@ class Builder
         $menu->setChildrenAttribute('class', 'nav navbar-nav');
         $menu->addChild('Accueil', ['route' => 'accueil']);
         $menu->addChild('Nouvelle commande', ['route' => 'ordertickets']);
+        $menu->addChild('Tests', ['route' => 'test']);
         return $menu;
 
     }

@@ -2,3 +2,10 @@ services:
 #    museum_ticket.example:
 #        class: Museum\TicketBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
+    museum.isDateOfVisitOK:
+        class: Museum\TicketBundle\Services\DateOfVisitService
+        arguments: ["@doctrine.orm.entity_manager"]
+
+    Museum\TicketBundle\EventSubscriber\LocaleSubscriber:
+        arguments: ["%kernel.default_locale%"]
+        tags: [kernel.event_subscriber]

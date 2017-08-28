@@ -11,11 +11,14 @@ class TicketFolderController extends Controller
     */
     public function orderTicketsAction(Request $request){
 
-      $ticketFolder = $this->getTicketFolder();
+      $session = $this->get('session');
+      $ticketFolder = new TicketFolder($session);
+      //$ticketFolder = $this->getTicketFolder();
       $form = $this->createFormBuilder($ticketFolder)->getForm();
 
       if ($request->isMethod('POST')) {
-
+      /* si on a cliqué sur le bouton Nouveau Visiteur,
+      on est redirigé vers la vue de définition d'un visiteur */
         $form->handleRequest($request);
         return $this->redirectToRoute('visitor');
 
@@ -26,11 +29,12 @@ class TicketFolderController extends Controller
             'message2' => '',
         ]);
     }
-
+/*
     public function getTicketFolder()
     {
         $session = $this->get('session');
         $ticketFolder = new TicketFolder($session);
         return $ticketFolder;
     }
+    */
 }

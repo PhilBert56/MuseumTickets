@@ -2,12 +2,13 @@
 
 {% block body %}
 
+  <blockquote>
     <h3><span>Commander des billets d'entrée au musée</h3>
 
     {{ form_start(orderForm)  }}
           {{ form_widget(orderForm) }}
           <br/>
-          <button type="submit" class ="btn btn-primary">Ajouter un visiteur</button>
+          <button type="submit" class = "pure-button">Ajouter un visiteur</button>
 
           {{ form_end(orderForm) }}
           <br/>
@@ -15,5 +16,7 @@
               {{ message1 }}
               {{ message2 }}
           </div>
-
+  </blockquote>
+  <br/>
+  <br/>
 {% endblock %}

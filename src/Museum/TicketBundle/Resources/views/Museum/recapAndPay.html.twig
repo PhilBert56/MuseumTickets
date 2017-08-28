@@ -14,7 +14,7 @@
                 <td>Nom = {{ ticket.visitor.name }}</td>
                 <td>Date de naissance = {{ ticket.visitor.birthDate | date('d-m-Y') }}</td>
                 <td>Prix = {{ ticket.price }}</td>
-                <a href="{{ path('deleteVisitor', {'firstName' : ticket.visitor.firstName , 'lastName' : ticket.visitor.name })  }}" class="btn btn-primary">Retirer ce visiteur de la liste </a>
+                <a href="{{ path('deleteVisitor', {'firstName' : ticket.visitor.firstName , 'lastName' : ticket.visitor.name })  }}" class="pure-button">Retirer ce visiteur de la liste </a>
                 <br/><br/>
             </tr>
         {%  endfor %}
@@ -25,11 +25,14 @@
 
     <br/>
 
-    <button type="submit" class ="btn btn-primary">Confirmer</button>
+    <button type="submit" class ="pure-button">Confirmer</button>
 
-    <a href="{{ path('visitor')  }}" class="btn btn-primary">Ajouter un visiteur</a>
-    <a href="{{ path('finalizeOrder')  }}" class="btn btn-primary">Payer</a>
+    <a href="{{ path('visitor')  }}" class="pure-button">Ajouter un visiteur</a>
+    <a href="{{ path('finalizeOrder')  }}" class="pure-button">Payer</a>
 
     {{ form_end(recapAndPayForm) }}
+
+    <br/>
+    <br/>
 
 {% endblock %}

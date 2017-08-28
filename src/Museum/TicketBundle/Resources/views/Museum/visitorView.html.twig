@@ -13,18 +13,14 @@
     {{ form_widget(visitorForm) }}
     <br/>
 
-    <button type="submit" class ="btn btn-primary">Confirmer</button>
+    <button type="submit" class ="pure-button">Confirmer</button>
 
-    <a href="{{ path('visitor') }}" class="btn btn-primary">Ajouter un autre visiteur </a>
-    <a href="{{ path('recapTickets') }}" class="btn btn-primary">Payer </a>
+    <a href="{{ path('visitor') }}" class="pure-button">Ajouter un autre visiteur </a>
+    <a href="{{ path('recapTickets') }}" class="pure-button">Payer </a>
 
 
     {{ form_end(visitorForm) }}
     <br/>
-
-    <div>
-        {{ message1 }}
-        {{ message2 }}
-    </div>
+    <br/>
 
 {% endblock %}

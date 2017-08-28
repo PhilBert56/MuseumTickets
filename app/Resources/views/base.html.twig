@@ -1,48 +1,91 @@
+{# app/Resources/views/base.html.twig #}
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Billetterie{% endblock %}</title>
-        {% block stylesheets %}
 
-            <!-- Latest compiled and minified CSS -->
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-                  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-                  crossorigin="anonymous">
-
-            <!-- Optional theme -->
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-                  integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-                  crossorigin="anonymous">
-
-        {% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="favicon.bmp">
+<title>Musée du Louvre</title>
+{% block stylesheets %}
+            <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+            <link href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+            <link href="{{ asset('js/sweetalert/sweetalert.css') }}" rel="stylesheet">
+            <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+            <link href="{{ asset('css/purestyles.css') }}" rel="stylesheet">
+            <link href='https://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
 
 
-        {{ knp_menu_render('AppBundle:Builder:mainMenu', {'currentClass' : 'active'}) }}
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">    <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-old-ie-min.css">
+<![endif]-->
+<!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+{% endblock %}
 
-            </div>
-            </div>
-        </nav>
+</head>
 
-        {% block body %}{% endblock %}
-        {% block javascripts %}
+<body>
 
-            <!-- Latest compiled and minified JavaScript -->
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-                    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+
+
+<div class="custom-menu-wrapper">
+    <div class="pure-menu custom-menu custom-menu-top">
+        <a href="#" class="pure-menu-heading custom-menu-brand">Musée du Louvre</a>
+        <a href="#" class="custom-menu-toggle" id="toggle"><s class="bar"></s><s class="bar"></s></a>
+    </div>
+    <div class="pure-menu pure-menu-horizontal pure-menu-scrollable custom-menu custom-menu-bottom custom-menu-tucked" id="tuckedMenu">
+        <div class="custom-menu-screen"></div>
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item"><a href= {{ path('accueil') }} class="pure-menu-link">Accueil</a></li>
+            <li class="pure-menu-item"><a href= {{ path('ordertickets')}} class="pure-menu-link">Commander des billets</a></li>
+        </ul>
+    </div>
+</div>
+
+
+<script>
+(function (window, document) {
+document.getElementById('toggle').addEventListener('click', function (e) {
+    document.getElementById('tuckedMenu').classList.toggle('custom-menu-tucked');
+    document.getElementById('toggle').classList.toggle('x');
+});
+})(this, this.document);
+</script>
+
+<!--
+<div class="museum-flash alert alert-success">'message test alerte'</div>
+-->
+  {% for msg in app.session.flashBag.get('success') %}
+            <div class="museum-flash alert alert-success">{{ msg }}</div>
+
+  {% endfor %}
+
+  {% for msg in app.session.flashBag.get('error') %}
+            <div class="museum-flash alert alert-danger">{{ msg }}</div>
+  {% endfor %}
+
+ {% block body %}{% endblock %}
+
+
+
+ <footer class="footer footer-styling">
+   <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <p> Footer </p>
+      </div>
+    </div>
+  </div>
+ </footer>
+
+    {% block javascripts %}
+            <script src="https://code.jquery.com/jquery-3.1.0.js"
+                    integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="
                     crossorigin="anonymous"></script>
 
-        {% endblock %}
-    </body>
+            <script src="{{ asset('js/sweetalert/sweetalert.min.js') }}"></script>
+    {% endblock %}
+
+  </body>
 </html>

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {{ 'Hello' | trans }}
+
+
+{{ form_start(testsForm)  }}
+
+
+</br> La langue de Session est actuellement le {{ langue_localeSession }} </br>
+</br> La langue de Request est actuellement le {{ langue_localeRequest }} </br>
+    {{ form_widget(testsForm) }}
+    <br/>
+    <button type="submit" class ="btn btn-primary">{{ 'Switch to French' | trans }}</button>
+
+
+    <br> {{ message }}
+{{ form_end(testsForm) }}
+{% endblock %}
