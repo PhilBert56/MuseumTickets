@@ -49,20 +49,34 @@
 
     <a href="{{ path('visitor')  }}" class="pure-button">Ajouter un visiteur</a>
 
+
+
     <form action="" method="POST">
+
+    <style>
+      .stripe-button-el { display: none }
+    </style>
+
     <script
+
+
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_live_GoKh6VgFyGr3BjvOWdDR6QXC"
+    data-key="pk_test_TLe3EYdNdUBIicMKOH6rxX3f"
     data-amount= {{total * 100}}
-    data-name="Euro"
-    data-description="Widget"
+    data-currency="EUR"
+    data-name="Musée du Louvre"
+    data-description="Réservation tickets"
+    data-label={{ "Payer" | trans}}
+    data-zip-code="false"
     data-locale="auto">
     </script>
+
+    <button class="pure-button">Payer</button>
     </form>
 
-
+    <!--
     <a href="{{ path('finalizeOrder')  }}" class="pure-button">Payer</a>
-
+    -->
 
     {{ form_end(recapAndPayForm) }}
 
