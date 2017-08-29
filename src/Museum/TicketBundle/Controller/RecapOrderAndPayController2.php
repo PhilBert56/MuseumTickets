@@ -9,7 +9,6 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Museum\TicketBundle\Entity\Customer;
-use Museum\TicketBundle\Entity\WorkingDay;
 
 class RecapOrderAndPayController extends Controller
 {
@@ -50,9 +49,7 @@ class RecapOrderAndPayController extends Controller
             }
 
             $token = $request->request->get('stripeToken');
-
             \Stripe\Stripe::setApiKey("sk_test_6t3qfq3AknEGeNqYq8nzGEDs");
-
             \Stripe\Charge::create(array(
               "amount" => $totalAmount * 100,
               "currency" => "EUR",
@@ -60,15 +57,16 @@ class RecapOrderAndPayController extends Controller
               "description" => "Museum TEST tickets!"
             ));
 
-            // si paiement OK
 
+            // si paiement OK
+/*
             $this->storeData($request);
 
-            foreach ($ticketFolder->getTickets() as $ticket) {
-              $this->sendEmail($ticket->getVisitor() , $customer);
+            foreach ($ticketFolder->tickets as $ticket) {
+              $this->sendEmail($ticket->visitor, $customer);
             }
-
-            $this->addFlash('success', "Vous allez recevoir vos billets à l'adresse : ".$customer->getEmail());
+*/
+            $this->addFlash('Paiement accepté', "Vous allez recevoir vos billets à l'adresse '.')
 
             return $this->render('MuseumTicketBundle:Museum:recapAndPay.html.twig', [
                 'recapAndPayForm' => $form->createView(),
@@ -84,6 +82,9 @@ class RecapOrderAndPayController extends Controller
         ]);
 
     }
+
+
+
 
     public function storeData(Request $request)
     {
@@ -118,7 +119,7 @@ class RecapOrderAndPayController extends Controller
 
             $this->sendEmail($ticket, $customer);
 
-            $this->refreshNumberOfVisitorPerDay($ticket->getDateOfVisit());
+            $this->refreshNumberOfVisitorPerDay($ticket->getDate)
         }
 
 
@@ -129,13 +130,13 @@ class RecapOrderAndPayController extends Controller
         return $this->render('MuseumTicketBundle:Museum:finalView.html.twig');
 
 
-    }
+  }
 
     public function sendEmail($visitors, $customer) {
 
-    /*
-    pour le test l'adresse du $customer est remplcée par une adresse de test codée en dur
-    */
+/*
+ pour le test l'adresse du $customer est remplcée par une adresse de test codée en dur
+*/
 
             $eMailAdress = $customer->getEmail();
             $eMailAdressPourTest = 'phil-bert@club-internet.fr';
@@ -206,6 +207,7 @@ class RecapOrderAndPayController extends Controller
         $em->flush();
     }
 
+*/
 
 
 

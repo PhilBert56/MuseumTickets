@@ -26,6 +26,10 @@ class FinalizeOrderController extends Controller
        $totalAmount = $ticketFolder->gettotalAmount();
        $customer = $ticketFolder->getCustomer();
 
+
+
+
+
        return $this->render('MuseumTicketBundle:Museum:checkout.html.twig' , [
            'total' =>$totalAmount,
            'stripe_public_key' => $this->getParameter('stripe_public_key')
