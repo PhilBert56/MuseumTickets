@@ -1,0 +1,102 @@
+﻿I. Le héros
+I A -Berger 
+I A1 - soldat libéré 
+I A2 - garçon qui va chercher fortune 
+I A3 - garçon qui fait son tour de France 
+I A4 - chasseur
+[I A5 - cavalier]
+
+II. Les animaux secourables
+II A - Il a trois chiens 
+II A1 - qu'il reçoit d'un vieil homme ou d'un seigneur
+II A2 - qu'il reçoit d'une fée
+II A3 - qu'il reçoit d'un autre
+II A4 - qu'il reçoit en échange de trois moutons
+II A5 - qu'il reçoit en échange de trois chèvres
+II A6 - qu'il reçoit en échange d'une chèvre
+II A7 - qu'il reçoit autrement 
+II B - Les chiens s'appellent Brise-Fer, Brise-Fer-et-Acier, Brûle-Fer
+II B1 - Les chiens s'appellent Va-comme-le-Vent, Vite-comme-le-Vent, Vif-comme-le-vent, Va-sans-vent
+II B2 - Le chien s'appelle Passe-Partout
+II B3 - Les chiens s'appellent Tranche-Montagne, Passe-Montagne, Perce-Montagne
+II B4 - autres
+II C - Autres animaux.
+II D - Il reçoit un sifflet qui fait venir les animaux où qu'ils soient
+[II D1] - Les animaux lui apportent du gibier et le défendent
+
+III. Dans la maison du bois
+III A - Il part seul 
+III A1 - part avec sa soeur.
+III B - Il s'arrête à maison ou château de brigands 
+III B1 - Il s'arrête à maison ou château de géants 
+III B2 - Il s'arrête à une auberge
+III B3 - tue les occupants
+III C - Pendant qu'il chasse, sa perte est complotée avec sa soeur 
+III C1 - par les occupants du château sortant d'une cachette 
+III C2 - par un survivant 
+III C3 - par le maître de la maison 
+III C4 - sa soeur se dit malade et l'envoie chercher des remèdes pour le séparer de ses chiens
+III C5 - doit préparer sa mort d'une autre façon 
+III C6 - chiens enfermés.
+III D - Attaqué par ses adversaires ;
+III D1 - il siffle ses animaux qui accourent
+III D2 - tuent ses ennemis
+III D3 - et sa soeur.
+
+IV. Le combat contre le monstre
+IV A - Le héros arrive à une ville en deuil avec ses chiens 
+IV A1 - avec animaux sauvages recueillis en route
+[IV A2] - (seul)
+IV B - Une jeune fille (c'est le tour de la fille du roi) doit être livrée à une bête à 7 têtes 
+IV B1 - à 9 têtes ;
+IV B2 - à 3 têtes ;
+IV B3 - ou à un autre monstre ;
+IV B4 - chaque année 
+IV B5 - chaque mois 
+IV B6 - autre.
+IV B7 - (tous les 6 mois)
+IV C - Le héros combat seul 
+IV C1 - aidé de ses chiens 
+IV C2 - aidé par chien et cheval 
+IV C3 - par animaux sauvages ;
+IV C4 - par d'autres 
+IV C5 - les têtes repoussent si on ne les abat toutes d'un coup.
+IV D - Le combat dure trois jours 
+IV D1 - deux jours 
+IV D2 - sept jours.
+[IV D3] - durée non précisée (seul est précisé le nombre de têtes tombées à chaque moment du combat]
+[IV D4] - en une fois
+IV E - Le héros emporte les langues du monstre ;
+IV E1 - le héros emporte le mouchoir de la princesse  
+IV E2 - le héros emporte l'anneau de la princesse  
+IV E3 - d'autres gages.
+IV F - C'est la princesse qui prend des gages.
+IV G - Le héros reviendra dans un an et un jour épouser la princesse 
+IV G1 - (en berger) la suit ou revient peu après
+IV G2 - délai indéterminé
+
+V. L'imposteur confondu
+V A - Les têtes de la bête sont emportées par un charbonnier qui se dit le libérateur 
+V A1 - par trois charbonniers [ou autre nombre à préciser] 
+V A2 - par un chaudronnier 
+V A3 - par un autre 
+V A4 - par une personne non précisée.
+[V A5] - usurpateur (préciser) menace la fille de la tuer si elle ne dit pas qu'il est son sauveur]
+V B - Le héros revient, trouve la ville en joie, apprend le mariage avec l'imposteur.
+V C - Il envoie un chien chercher des vivres ou des objets à la cour du roi 
+V C1 - porter un message à la princesse (continué par T314)
+V C2 - après avoir parié 
+V C3 - il tue avec ses bêtes les soldats envoyés contre lui.
+[V C4 - par d'autres
+V C5 - le roi fait suivre le(s) chien(s)]
+V D - Venu ou appelé à la cour, il confond l'imposteur en montrant langues et gages 
+V D1 - c'est la princesse qui montre des gages.
+V E - L'imposteur est brûlé ;
+V E1 - écartelé 
+V E2 - pendu 
+V E3 - s'échappe 
+V E4 - autre sort
+V F - Mariage avec la fille libérée 
+[V G] - Autre dénouement
+[V G1] - (le roi impose épreuves avant d'accepter le mariage)
+[V G2] - (roi va voir château du héros pour vérifier ses richesses)

@@ -1,0 +1,83 @@
+ 
+Motifs du motif Index de Aarne et Thompson présents dans le type 300
+
+T68.1. Princess offered as prize to rescuer. *Types 300, 301, 302, 303, 304, 506, 653
+
+K1935. Impostors steal rescued princess. *Types 300, 301, 303, 304*
+
+K1932. Impostors claim reward (prize) earned by hero. *Types 300, 301, 303, 506, 550, 551, 667*
+
+K1816.0.3.1. Hero in menial disguise at heroine's wedding. Types 300, 301, 303
+
+H80. Identification by tokens. Types 300, 301, 304, 306, 873
+
+H83. Rescue tokens. Proof that hero has succeeded in rescue. (Cf. H105, H105.1, H105.2.) *Types 300, 301, 304, 306
+
+K1933. Impostor forces oath of secrecy. Hero or heroine swears not to tell of imposture. *Types 300, 301, 533
+
+H113. Identification by handkerchief. *Types 300, 301
+
+T151. Year's respite from unwelcome marriage. *Type 300, 301
+
+B311. Congenital helpful animal. Born at same time as master and (usually) by same magic means.- *Types 300, 303
+
+F527.1.1. Red knight. Types 300, 303
+
+H105.1. Dragon-tongue proof. Dragon slayer cuts out the tongues and uses them later to prove his identity as slayer. *Types 300, 303
+
+L225. Hero refuses reward. Rides away without it. *Types 300, 303
+
+R111.1.3. Rescue of princess (maiden) from dragon. *Types 300, 303
+
+R111.6. Girl rescued and then abandoned. Types 300, 303
+
+K2212. Treacherous sister. Usually elder sister. *Types 300, 315, 425, 706, 709, 780
+
+H982. Animals help man perform task. *Types 300, 329, 531, 550, 552, 554, 665.
+
+B421. Helpful dog. (Cf. B524.1.1, B268.2.1. War-dogs.) *Types 300, 400, 560
+
+B391. Animal grateful for food. *Types 300, 531, 550, 554
+
+B515. Resuscitation by animals. *Types 300, 665
+
+B11. Dragon. *Type 300
+
+B11.2.3.1. Seven-headed dragon. *Type 300
+
+B11.2.11. Fire-breathing dragon. *Type 300
+
+B11.5.5. Self-returning dragon's head. (cf. B11.2.3, B11.11.2.)--*Type 300
+
+B11.10. Sacrifice of human being to dragon. *Type 300
+
+B11.11. Fight with dragon. *Type 300
+
+B11.11.2. Hero's dogs (horse) prevent dragon's heads from rejoining body. (Cf. B11.2.3.)--*Type 300
+
+B312.2. Helpful animals obtained by exchange. *Type 300
+
+B392. Hero divides spoil for animals. *Type 300
+
+B524.1.1. Dogs kill attacking cannibal (dragon). *Type 300
+
+C422.1. Tabu: revealing dragon-fighter's identity. Dragon-fighter forbids princess whom he has rescued to tell who he is.--*Type 300.
+
+D1962.2. Magic sleep by lousing. Picking the lice from the head of an old person or an ogre is used to put him to sleep. *Type 300
+
+D1975. Dragon-fighter's magic sleep. While waiting for fight with dragon, hero falls into magic sleep. (Cf. D1962.2.) *Type 300
+
+D1978.1. Waking from magic sleep by cutting off finger. Type 300
+
+D1978.2. Waking from magic sleep by letting tear fall on sleeper. Type 300
+
+H105.1.1. False dragon-head proof. Impostor cuts off dragon heads (after tongues have been removed) and attempts to use them as proof of slaying the dragon. *Type 300
+
+K2262. Treacherous charcoal-burner. *Type 300
+
+K2265. Treacherous red knight. *Type 300
+
+L161. Lowly hero marries princess. *Types 300, 301, 302, 303, 304, 306, 307, 308*, 314, 325, 329, 400, 434, 502, 506, 507, 508, 513, 514, 530, 545B, 552, 553, 559, 560, 561, 570, 571, 575, 577, 580, 590, 594*, 725, 853, 854, 930, 935
+
+P412.1. Shepherd as hero. *Type 300.
+
