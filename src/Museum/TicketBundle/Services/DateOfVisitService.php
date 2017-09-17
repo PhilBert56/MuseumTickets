@@ -20,8 +20,8 @@ class DateOfVisitService
     /* Codes de refus d'une transaction
         0 => 'ok',
         1 => "La date selectionnée est dépassée",
-        21 => "L'entrée au musée est gratuit le dimanche",
-        22 => "L'entrée au musée est gratuit les jours fériés" ,
+        21 => "L'entrée au musée est gratuite le dimanche",
+        22 => "L'entrée au musée est gratuite les jours fériés" ,
         31 => "Le musée est fermé le mardi",
         32 => "Le musée est fermé le 1er mai",
         33 => "Le musée est fermé le 1er novembre",

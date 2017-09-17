@@ -44,8 +44,9 @@ class VisitorController extends Controller
                 /* Vérifier si l'heure permet de commander un billet à la journée */
 
                 $dateOfVisit = $form['ticket']['dateOfVisit']->getData();
-
+dump($dateOfVisit);
                 $dateService = $this->container->get('museum.isDateOfVisitOK');
+
                 $codeDateOk = $dateService->isDateOk($dateOfVisit);
 
                 /* Si date infaisable */
@@ -212,11 +213,15 @@ class VisitorController extends Controller
 
         /* Vérifier si l'heure permet de commander un billet à la journée */
 
-        $today = new \DateTime();
+        $timeZone = 'Europe/Paris';
+        $timestamp = time();
+        $today = new \DateTime("now", new \DateTimeZone($timeZone));
+        $today->setTimestamp($timestamp); //adjust the object to correct timestamp
+
+        //$today = new \DateTime();
         $hour = $today->format("H");
         $todayDate = $today->format('d/m/Y');
         $dateDate = $date->format('d/m/Y');
- ;
 
         if ($dateDate == $todayDate && $hour >= 14) {
             /* Heure de fermeture imminente codée en dur = SOLUTION TEMPORAIRE à améliorer !*/
