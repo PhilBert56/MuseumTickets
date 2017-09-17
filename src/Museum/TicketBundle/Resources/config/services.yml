@@ -6,6 +6,14 @@ services:
         class: Museum\TicketBundle\Services\DateOfVisitService
         arguments: ["@doctrine.orm.entity_manager"]
 
+    museum.priceFromBirthDate:
+        class: Museum\TicketBundle\Services\PriceFromBirthDateService
+        arguments: ["@doctrine.orm.entity_manager"]
+
+    museum.translation:
+        class: Museum\TicketBundle\Services\TranslationService
+        arguments: ["@doctrine.orm.entity_manager"]
+
     Museum\TicketBundle\EventSubscriber\LocaleSubscriber:
         arguments: ["%kernel.default_locale%"]
         tags: [kernel.event_subscriber]

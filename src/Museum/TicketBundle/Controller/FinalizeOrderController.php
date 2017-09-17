@@ -86,11 +86,11 @@ class FinalizeOrderController extends Controller
                 ->setSubject('test')
                 ->setFrom($this->container->getParameter('mailer_username'))
                 ->setTo('phil-bert@club-internet.fr')
-                ->setBody('coucou');
+                ->setBody('Billet Muséee du Louvre');
 
             $this->get('mailer')->send($message);
-            dump($message);
-            $this->addFlash('success', 'coucou envoyé');
+dump($message);
+            $this->addFlash('success', 'Billets envoyés sur votre boîte mail');
 
 
     }
@@ -121,7 +121,7 @@ class FinalizeOrderController extends Controller
 
     public function encodeTicket($ticket){
 
-        return '123456';
+        return 'Code ticket = 123456';
 
 
     }

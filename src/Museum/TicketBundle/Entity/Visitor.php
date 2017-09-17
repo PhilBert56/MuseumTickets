@@ -177,6 +177,36 @@ class Visitor
     }
 
 
+    public function age($dateOfBirth, $dateOfVisit) {
+
+    /* Retourne l'âge qu'aura la personne née le $dateOfBirth (objet date) à la date $date (objet date)*/
+        $year_diff  = $dateOfVisit->format("Y") - $dateOfBirth->format("Y");
+        $month_diff = $dateOfVisit->format("m") - $dateOfBirth->format("m");
+        $day_diff   = $dateOfVisit->format("d") - $dateOfBirth->format("d");
+        if ($month_diff < 0) $year_diff--;
+        if ($month_diff==0 && $day_diff <= 0  ) $year_diff--;
+        return $year_diff;
+    }
+
+    public function setTicketInfo($dateOfVisit, $priceFromBirthDateServive) {
+
+        $ticket = $this->getTicket();
+        $ticket->setDateOfVisit($dateOfVisit);
+
+        /* Calcul du code tarif */
+        //$priceFromBirthDateServive = $controller->container->get('museum.priceFromBirthDate');
+        $priceCode = $priceFromBirthDateServive->getPriceCode($this,$dateOfVisit);
+
+        $price = $priceFromBirthDateServive->getPrice($priceCode);
+        /* Vérifier si demi-journée, si vrai, prix divisé par 2 */
+        if ($ticket->getHalfDay() ) $price = $price / 2;
+
+        $ticket->setPriceCode($priceCode);
+        $ticket->setPrice($price);
+
+        return $ticket;
+    }
+
 
 
 }

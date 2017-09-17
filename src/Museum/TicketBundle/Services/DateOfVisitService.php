@@ -182,6 +182,30 @@ public function getHolidayTable($year){
 
   }
 
+  function isFullDayOrderStillPossible($date)
+  {
+
+      /* Vérifier si l'heure permet de commander un billet à la journée */
+
+      $timeZone = 'Europe/Paris';
+      $timestamp = time();
+      $today = new \DateTime("now", new \DateTimeZone($timeZone));
+      $today->setTimestamp($timestamp); //adjust the object to correct timestamp
+
+      //$today = new \DateTime();
+      $hour = $today->format("H");
+      $todayDate = $today->format('d/m/Y');
+      $dateDate = $date->format('d/m/Y');
+
+      if ($dateDate == $todayDate && $hour >= 14) {
+          /* Heure de fermeture imminente codée en dur = SOLUTION TEMPORAIRE à améliorer !*/
+          if ($hour >= 16){return 52; }
+          else { return 51;}
+      }
+
+      return 0;
+  }
+
 /*
   public function getTranslatedMessage($messageCode, $langue) {
 

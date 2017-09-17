@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Museum\TicketBundle\Entity\Customer;
+use Museum\TicketBundle\Entity\Ticket;
 use Museum\TicketBundle\Entity\WorkingDay;
 
 class RecapOrderAndPayController extends Controller
@@ -38,6 +39,7 @@ class RecapOrderAndPayController extends Controller
         $form = $formBuilder->getForm();
 
         $ticketFolder->setTotalAmount();
+
         $totalAmount = $ticketFolder->getTotalAmount();
 
         if ($request->isMethod('POST')) {
@@ -57,15 +59,18 @@ class RecapOrderAndPayController extends Controller
               "amount" => $totalAmount * 100,
               "currency" => "EUR",
               "source" => $token,
-              "description" => "Museum TEST tickets!"
+              "description" => "Museum tickets"
             ));
 
             // si paiement OK
 
             $this->storeData($request);
+            //$tickets = $ticketFolder->getTickets();
 
-            foreach ($ticketFolder->getTickets() as $ticket) {
-              $this->sendEmail($ticket->getVisitor() , $customer);
+            foreach ( $tickets as $ticket) {
+              $mailerUser = $this->container->getParameter('mailer_user');
+              $mailer = $this->get('mailer');
+              $ticket->sendConfirmationByEmail($mailerUser, $mailer);
             }
 
             $this->addFlash('success', "Vous allez recevoir vos billets à l'adresse : ".$customer->getEmail());
@@ -108,7 +113,8 @@ class RecapOrderAndPayController extends Controller
 
             /* génération du code sur le ticket - solution temporaire */
 
-            $code = '1234';
+            $code = '987654321';
+
             $ticket->setTicketCode($code);
 
             $ticket->setCustomer($customer);
@@ -116,40 +122,40 @@ class RecapOrderAndPayController extends Controller
             $em->persist($visitor);
             $em->persist($ticket);
 
-            $this->sendEmail($ticket, $customer);
-
             $this->refreshNumberOfVisitorPerDay($ticket->getDateOfVisit());
         }
 
-
-
         $em->flush();
-
 
         return $this->render('MuseumTicketBundle:Museum:finalView.html.twig');
 
-
     }
 
-    public function sendEmail($visitors, $customer) {
+    public function sendEmail($ticket,$customer) {
 
     /*
     pour le test l'adresse du $customer est remplcée par une adresse de test codée en dur
     */
-
             $eMailAdress = $customer->getEmail();
             $eMailAdressPourTest = 'phil-bert@club-internet.fr';
 
-            $ticketDescription = 'description du ticket à venir';
+            $visitor = $ticket->getVisitor();
 
+            $ticketDescription = 'VISITEUR : ';
+            $ticketDescription = $ticketDescription.$visitor->getFirstName();
+            $ticketDescription = $ticketDescription.' '.$visitor->getName();
+            $birthDate = $visitor->getbirthDate()->format('j-n-Y');
+            $ticketDescription = $ticketDescription.' '.$birthDate;
+            $ticketDescription = $ticketDescription.' '.$ticket->getPrice().' €';
 
             $message = \Swift_Message::newInstance()
-                ->setSubject('test')
-                ->setFrom($this->container->getParameter('mailer_username'))
+                ->setSubject('Billetterie')
+                ->setFrom($this->container->getParameter('mailer_user'))
                 ->setTo($eMailAdressPourTest)
                 ->setBody($ticketDescription);
 
             $this->get('mailer')->send($message);
+
             $this->addFlash('OK ', 'billet envoyé');
 
 
@@ -172,8 +178,6 @@ class RecapOrderAndPayController extends Controller
             $em->persist($ticket);
 
             $this->refreshNumberOfVisitorPerDay($ticket->getDateOfVisit());
-            $this->sendEmail($ticket, $customer);
-
 
         }
 

@@ -198,4 +198,33 @@ class Ticket
         $this->customer = $customer;
     }
 
+
+    public function sendConfirmationByEmail($mailerUser, $mailer) {
+
+    /*
+    pour le test l'adresse du $customer est remplcée par une adresse de test codée en dur
+    */
+            $customer = $this->customer;
+            $visitor = $this->visitor;
+
+            $eMailAdress = $customer->getEmail();
+            $eMailAdressPourTest = 'phil-bert@club-internet.fr';
+
+            $ticketDescription = 'VISITEUR : ';
+            $ticketDescription = $ticketDescription.$visitor->getFirstName();
+            $ticketDescription = $ticketDescription.' '.$visitor->getName();
+            $birthDate = $visitor->getbirthDate()->format('j-n-Y');
+            $ticketDescription = $ticketDescription.' '.$birthDate;
+            $ticketDescription = $ticketDescription.' '.$this->price.' €';
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject('Billetterie')
+                ->setFrom($mailerUser)
+                ->setTo($eMailAdressPourTest)
+                ->setBody($ticketDescription);
+
+            $mailer->send($message);
+
+    }
+
 }
