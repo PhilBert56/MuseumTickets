@@ -6,17 +6,8 @@ namespace Museum\TicketBundle\Services;
 
 class PriceFromBirthDateService
 {
-  private $em;
-  //private $locale;
-
-  public function __construct(\Doctrine\ORM\EntityManager $entityManager)
-  {
-    $this->em = $entityManager;
-    //$this->locale = $locale;
-  }
-
-
-  function getPriceCode($visitor, $dateOfVisit){
+  
+  public function getPriceCode($visitor, $dateOfVisit){
       /* Gestion date anniversaire pour determiner age du visiteur */
       $birthDate = $visitor->getBirthDate();
       $age = $visitor->age($birthDate, $dateOfVisit);

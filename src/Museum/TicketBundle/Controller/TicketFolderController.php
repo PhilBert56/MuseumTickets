@@ -29,12 +29,5 @@ class TicketFolderController extends Controller
             'message2' => '',
         ]);
     }
-/*
-    public function getTicketFolder()
-    {
-        $session = $this->get('session');
-        $ticketFolder = new TicketFolder($session);
-        return $ticketFolder;
-    }
-    */
+
 }
