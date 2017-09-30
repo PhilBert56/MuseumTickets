@@ -7,12 +7,13 @@ namespace Museum\TicketBundle\Services;
 class DateOfVisitService
 {
   private $em;
+  private $translation;
   //private $locale;
 
-  public function __construct(\Doctrine\ORM\EntityManager $entityManager)
+  public function __construct(\Doctrine\ORM\EntityManager $entityManager , $translation)
   {
     $this->em = $entityManager;
-    //$this->locale = $locale;
+    $this->translation = $translation;
   }
 
   public function isDateOk($date) {
@@ -117,7 +118,6 @@ public function isCapacityMaxReached($date){
 
     // Plus de 1000 visiteurs ?
 
-    //$emg = $this->em->getDoctrine()->getManager();
     $workingDay = $this->em->getRepository('MuseumTicketBundle:WorkingDay')
         ->findOneByDate( $date );
 
@@ -132,8 +132,6 @@ public function isCapacityMaxReached($date){
 
     return 0;
 }
-
-
 
 
 public function getHolidayTable($year){
@@ -241,5 +239,44 @@ public function getHolidayTable($year){
       $year = $date->format("Y");
       return mktime(0, 0, 0, $month, $day, $year);
   }
+
+
+
+  public function checkHourOfVisit($dateOfVisit) {
+
+    $hourIsOkCode = $this->isFullDayOrderStillPossible($dateOfVisit);
+    /* si heure du jour impose demi-journée ou fermeture imminente */
+    if( $hourIsOkCode == 51 && !$ticket->getHalfDay()) {
+        /* l'utilisateur doit cocher demi-journée */
+        $message1 = $this->translation->getTranslatedMessage(1, 'fr');
+        $message2 = $this->getRefusalMotivation($hourIsOkCode);
+        return [true, $message1.' '.$message2];
+    }
+    if( $hourIsOkCode == 52 ) {
+        $message1 = $this->translation->getTranslatedMessage(1, 'fr');
+        $message2 = $this->getRefusalMotivation($hourIsOkCode);
+
+        return [true, $message1.' '.$message2];
+    }
+
+
+  }
+
+
+  public function checkDateOfVisit($dateOfVisit) {
+
+    $codeDateOk = $this->isDateOk($dateOfVisit);
+    /* Si date infaisable */
+    if ($codeDateOk !== 0) {
+        $message1 = $this->translation->getTranslatedMessage(1, 'fr');
+        $message2 = $this->getRefusalMotivation($codeDateOk);
+
+        return [true, $message1.' '.$message2];
+    }
+
+
+
+  }
+
 
 }

@@ -18,27 +18,19 @@ class DeleteVisitorController extends Controller
      */
     public function deleteVisitorAction()
     {
+        $visitorService = $this->container->get('museum.visitorManagement');
 
-        $session = $this->get('session');
-        $ticketFolder = $session->get('ticketFolder');
+        $lastTicket = $visitorService->deleteVisitor();
 
-        $customer = $ticketFolder->getCustomer();
-
-        $request = Request::createFromGlobals();
-        $firstName = $request->query->get('firstName');
-        $lastName = $request->query->get('lastName');
-
-        $ticketFolder->cancelVisitorAndAssociatedTicket($firstName, $lastName);
-        $totalAmount = $ticketFolder->getTotalAmount();
-        $tickets = $ticketFolder->getTickets();
-
-        if ( count ($tickets) == 0) {
+        /*
+          si c'est le dernier visiteur de la liste,
+          revenir automatiquement à la définition d'un nouveau visiteur
+        */
+        if ($lastTicket) {
             return $this->redirect( $this->generateUrl('visitor'));
         }
 
-        // tester si le Customer existe sinon le creer
-        if (!$customer) $customer = new Customer();
-
+        $customer = $visitorService->visitorGetAssociatedCustomer();
         $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $customer);
 
         $formBuilder
@@ -46,10 +38,12 @@ class DeleteVisitorController extends Controller
         ;
         $form = $formBuilder->getForm();
 
+
+        $ticketFolder = $visitorService->visitorGetAssociatedTicketFolder();
         return $this->render('MuseumTicketBundle:Museum:recapAndPay.html.twig',[
             'recapAndPayForm' => $form->createView(),
-            'tickets'=>$tickets,
-            'total' => $totalAmount
+            'tickets'=>$ticketFolder->getTickets(),
+            'total' => $ticketFolder->getTotalAmount()
         ]);
     }
 }

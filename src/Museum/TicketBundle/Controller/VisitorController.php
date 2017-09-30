@@ -11,7 +11,7 @@ use Museum\TicketBundle\Entity\Ticket;
 use Museum\TicketBundle\TicketFolder\TicketFolder;
 use Museum\TicketBundle\Entity\Visitor;
 use Museum\TicketBundle\Form\VisitorFormType;
-use Museum\TicketBundle\TemporaryObjects\MuseumDay;
+//use Museum\TicketBundle\TemporaryObjects\MuseumDay;
 
 
 class VisitorController extends Controller
@@ -47,51 +47,37 @@ class VisitorController extends Controller
 
                 $dateService = $this->container->get('museum.isDateOfVisitOK');
 
-                $codeDateOk = $dateService->isDateOk($dateOfVisit);
-
-
-                $translation = $this->container->get('museum.translation');
-                /* Si date infaisable */
-                if ($codeDateOk !== 0) {
-                    $message1 = $translation->getTranslatedMessage(1, 'fr');
-                    $message2 = $dateService->getRefusalMotivation($codeDateOk);
-
-                    $this->addFlash('error', $message1.' '.$message2);
-
-                    return $this->render('MuseumTicketBundle:Museum:visitorView.html.twig', [
-                        'visitorForm' => $form->createView()
-                    ]);
-                } else {
-                    /* date acceptée */
-                    $ticketFolder->setDateOfVisit($dateOfVisit);
+                $messages = $dateService->checkDateOfVisit($dateOfVisit);
+                if ($messages[0]){
+                  $this->addFlash('error', $messages[1]);
+                  return $this->render('MuseumTicketBundle:Museum:visitorView.html.twig', [
+                      'visitorForm' => $form->createView()
+                  ]);
                 }
+/*
+                else {
+                  // date acceptée
+                  $ticketFolder->setDateOfVisit($dateOfVisit);
+                }
+                */
 
-                $hourIsOkCode = $dateService->isFullDayOrderStillPossible($dateOfVisit);
 
                 /* si heure du jour impose demi-journée ou fermeture imminente */
-                if( $hourIsOkCode == 51 && !$ticket->getHalfDay()) {
-                    /* l'utilisateur doit cocher demi-journée */
-                    $message1 = $translation->getTranslatedMessage(1, 'fr');
-                    $message2 = $dateService->getRefusalMotivation($hourIsOkCode);
+                $messages = $dateService->checkHourOfVisit($dateOfVisit);
 
-                    $this->addFlash('error', $message1.' '.$message2);
+                if ($messages[0]){
+                  $this->addFlash('error', $messages[1]);
+                  return $this->render('MuseumTicketBundle:Museum:visitorView.html.twig', [
+                      'visitorForm' => $form->createView()
+                  ]);
 
-                    return $this->render('MuseumTicketBundle:Museum:visitorView.html.twig', [
-                        'visitorForm' => $form->createView()
-                    ]);
-                }
-                if( $hourIsOkCode == 52 ) {
-                    $message1 = $translation->getTranslatedMessage(1, 'fr');
-                    $message2 = $dateService->getRefusalMotivation($hourIsOkCode);
-
-                    $this->addFlash('error', $message1.' '.$message2);
-                    return $this->render('MuseumTicketBundle:Museum:visitorView.html.twig', [
-                        'visitorForm' => $form->createView()
-                    ]);
                 }
 
-                $priceFromBirthDateServive = $this->container->get('museum.priceFromBirthDate');
-                $visitor->setTicketInfo($dateOfVisit, $priceFromBirthDateServive);
+                $ticketFolder->setDateOfVisit($dateOfVisit);
+
+                $priceFromBirthDateService = $this->container->get('museum.priceFromBirthDate');
+                $visitor->setTicketInfo($dateOfVisit, $priceFromBirthDateService);
+                
                 $ticketFolder->addTicketToTicketFolder($ticket);
 
             }

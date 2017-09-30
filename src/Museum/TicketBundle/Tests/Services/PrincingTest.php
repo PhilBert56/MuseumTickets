@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\AppBundle\Service;
+namespace Museum\TicketBundle\Tests\Service;
 use Museum\TicketBundle\Services\PriceFromBirthDateService;
 use Museum\TicketBundle\Entity\Visitor;
 use PHPUnit\Framework\TestCase;
