@@ -14,10 +14,13 @@ class FinalizeOrderController extends Controller
 
      public function checkoutAction(Request $request){
 
-       $totalAmount = $this
-        ->get('session')
-        ->get('ticketFolder')
-        ->gettotalAmount();
+       $ticketFolder = $this->get('session')->get('ticketFolder');
+       $isPaymentAlreadyProcessed = $ticketFolder->getPaymentAlreadyProcessed();
+       if ($isPaymentAlreadyProcessed){
+         $this->addFlash('error', "Le paiement a déjà été effectué");
+         return;
+       }
+       $totalAmount = $ticketFolder->gettotalAmount();
 
 
        return $this->render('MuseumTicketBundle:Museum:checkout.html.twig' , [

@@ -10,13 +10,12 @@ class TicketFolder
 {
 
     private $session;
-    //private $em;
-
     private $invoiceDate;
-    private $dateOfVisit;
     private $customer;
     private $tickets;
     private $totalAmount;
+    private $lastDateOfVisit;
+    private $paymentAlreadyProcessed;
 
 
     public function __construct(Session $session)
@@ -26,7 +25,9 @@ class TicketFolder
         $this->invoiceDate = new \Datetime();
         $this->customer = new Customer();
         $this->tickets = [];
+        $this->paiementProcessed = false;
         $session->set('ticketFolder', $this );
+
     }
 
 
@@ -35,9 +36,10 @@ class TicketFolder
         return $this->lastDateOfVisit;
     }
 
-    public function setDateOfVisit($lastDateOfVisit)
+
+    public function setLasDateOfVisit($lastDateOfVisit)
     {
-        $this->dateOfVisit = $lastDateOfVisit;
+        $this->lastDateOfVisit = $lastDateOfVisit;
     }
 
 
@@ -128,10 +130,20 @@ class TicketFolder
         return $this->tickets;
     }
 
-    public function getTotal() {
+
+    public function confirmTicketsByEmail($mailerUser,$mailer){
+
+      foreach ( $this->tickets as $ticket) {
+        $ticket->sendConfirmationByEmail($mailerUser, $mailer);
+      }
     }
 
-    public function emptyTicketFolder (){
+    public function getPaymentAlreadyProcessed(){
+        return $this->paymentAlreadyProcessed;
     }
 
-}
+    public function setPaymentAlreadyProcessed($paymentprocessed){
+        $this->paymentAlreadyProcessed = $paymentprocessed;
+    }
+
+ }

@@ -9,8 +9,8 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Museum\TicketBundle\Entity\Customer;
-use Museum\TicketBundle\Entity\Ticket;
-use Museum\TicketBundle\Entity\WorkingDay;
+//use Museum\TicketBundle\Entity\Ticket;
+//use Museum\TicketBundle\Entity\WorkingDay;
 
 class RecapOrderAndPayController extends Controller
 {
@@ -49,34 +49,48 @@ class RecapOrderAndPayController extends Controller
             if ($form->isValid()) {
                 $ticketFolder->setCustomer($customer);
                 $session->set('ticketOrder', $ticketFolder);
+            } else {
+              $this->addFlash('error', "Saisie incorrecte");
+              return;
             }
+/*
+            if (!$ticketFolder->paymentAlreadyProcessed) {
+              $token = $request->request->get('stripeToken');
 
-            $token = $request->request->get('stripeToken');
+              \Stripe\Stripe::setApiKey("sk_test_6t3qfq3AknEGeNqYq8nzGEDs");
 
-            \Stripe\Stripe::setApiKey("sk_test_6t3qfq3AknEGeNqYq8nzGEDs");
+              \Stripe\Charge::create(array(
+                "amount" => $totalAmount * 100,
+                "currency" => "EUR",
+                "source" => $token,
+                "description" => "Museum tickets"
+              ));
+*/
 
-            \Stripe\Charge::create(array(
-              "amount" => $totalAmount * 100,
-              "currency" => "EUR",
-              "source" => $token,
-              "description" => "Museum tickets"
-            ));
+              $ticketFolderPaymentService = $this->container->get('museum.payment');
+              $isPaymentOK = $ticketFolderPaymentService->processPayment($request, $ticketFolder);
 
-            // si paiement OK
+              // si paiement OK
+              if ($isPaymentOK){
 
-            $this->storeData($request);
-            //$tickets = $ticketFolder->getTickets();
+                // persistence des donnée
+                $dataPersistenceService = $this->container->get('museum.dataPersistence');
+                $dataPersistenceService->storeData();
 
-            foreach ( $tickets as $ticket) {
-              $mailerUser = $this->container->getParameter('mailer_user');
-              $mailer = $this->get('mailer');
-              $ticket->sendConfirmationByEmail($mailerUser, $mailer);
-            }
+                // envoi des emails pour les billets
+                $mailerUser = $this->container->getParameter('mailer_user');
+                $mailer = $this->get('mailer');
+                $ticketFolder->confirmTicketsByEmail($mailerUser, $mailer);
+                $ticketFolder->setPaymentAlreadyProcessed(true);
 
-            $this->addFlash('success', "Vous allez recevoir vos billets à l'adresse : ".$customer->getEmail());
+                $this->addFlash('success', "Vous allez recevoir vos billets à l'adresse : ".$customer->getEmail());
+              } else {
+                $this->addFlash('error', "Cette commande a déjà été payée ou le paiement n'a pas pu être validé");
+              }
 
-            return $this->render('MuseumTicketBundle:Museum:recapAndPay.html.twig', [
-                'recapAndPayForm' => $form->createView(),
+
+            return $this->render('MuseumTicketBundle:Museum:finalView.html.twig', [
+                //'recapAndPayForm' => $form->createView(),
                 'tickets'=>$tickets,
                 'total' =>$totalAmount
             ]);
@@ -130,12 +144,10 @@ class RecapOrderAndPayController extends Controller
         return $this->render('MuseumTicketBundle:Museum:finalView.html.twig');
 
     }
-
+/*
     public function sendEmail($ticket,$customer) {
 
-    /*
-    pour le test l'adresse du $customer est remplcée par une adresse de test codée en dur
-    */
+
             $eMailAdress = $customer->getEmail();
             $eMailAdressPourTest = 'phil-bert@club-internet.fr';
 
@@ -161,7 +173,7 @@ class RecapOrderAndPayController extends Controller
 
     }
 
-
+*/
     public function storeTicketsAndAssociatedVisitors($em, $tickets, $customer){
 
         foreach ($tickets as $ticket) {

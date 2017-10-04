@@ -54,23 +54,19 @@
     </style>
 
     <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_test_TLe3EYdNdUBIicMKOH6rxX3f"
-    data-amount= {{total * 100}}
-    data-currency="EUR"
-    data-name="Musée du Louvre"
-    data-description="Réservation tickets"
-    data-label={{ "Payer" | trans}}
-    data-zip-code="false"
-    data-locale="auto">
+      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      data-key="pk_test_TLe3EYdNdUBIicMKOH6rxX3f"
+      data-amount= {{total * 100}}
+      data-currency="EUR"
+      data-name="Musée du Louvre"
+      data-description="Réservation tickets"
+      data-label={{ "Payer" | trans}}
+      data-zip-code="false"
+      data-locale="auto">
     </script>
 
 
     </form>
-
-    <!--
-    <a href="{{ path('finalizeOrder')  }}" class="pure-button">Payer</a>
-    -->
 
     {{ form_end(recapAndPayForm) }}
 

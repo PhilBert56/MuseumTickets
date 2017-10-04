@@ -32,7 +32,7 @@ class Ticket
 
 
     /**
-     * @ORM\OneToOne(targetEntity="Visitor", inversedBy="ticket")
+     * @ORM\OneToOne(targetEntity="Visitor", inversedBy="ticket", cascade={"persist"})
      */
     private $visitor;
 
@@ -214,8 +214,8 @@ class Ticket
             $ticketDescription = $ticketDescription.$visitor->getFirstName();
             $ticketDescription = $ticketDescription.' '.$visitor->getName();
             $birthDate = $visitor->getbirthDate()->format('j-n-Y');
-            $ticketDescription = $ticketDescription.' '.$birthDate;
-            $ticketDescription = $ticketDescription.' '.$this->price.' €';
+            $ticketDescription = $ticketDescription.' né(e) le : '.$birthDate;
+            $ticketDescription = $ticketDescription.' prix : '.$this->price.' €';
 
             $message = \Swift_Message::newInstance()
                 ->setSubject('Billetterie')

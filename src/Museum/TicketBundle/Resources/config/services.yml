@@ -14,11 +14,17 @@ services:
     museum.priceFromBirthDate:
         class: Museum\TicketBundle\Services\PriceFromBirthDateService
 
-
-
     museum.visitorManagement:
       class: Museum\TicketBundle\Services\VisitorService
       arguments: ["@session"]
+
+    museum.payment:
+      class: Museum\TicketBundle\Services\TicketFolderPaymentService
+
+    museum.dataPersistence:
+      class: Museum\TicketBundle\Services\DataPersistenceService
+      arguments: ["@doctrine.orm.entity_manager", "@session"]
+
 
     Museum\TicketBundle\EventSubscriber\LocaleSubscriber:
         arguments: ["%kernel.default_locale%"]

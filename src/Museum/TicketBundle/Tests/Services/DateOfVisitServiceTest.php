@@ -31,25 +31,25 @@ class DateOfVisitTest extends WebTestCase {
 
     $container = $kernel->getContainer();
 
-    $dateService = $container->get('DateOfVisitService');
+    $dateService = $container->get('museum.isDateOfVisitOK');
 
-    $dateOfVisit = new \DateTime('2017-09-01'); // un dimanche
+    $dateOfVisit = new \DateTime('2016-10-08'); // date dépassée
     $this->assertSame( 1, $dateService->isDateOk($dateOfVisit));
 
 
-    $dateOfVisit = new \DateTime('2017-10-01'); // un dimanche
+    $dateOfVisit = new \DateTime('2017-10-15'); // un dimanche
     $this->assertSame( 21, $dateService->isDateOk($dateOfVisit));
 
 
-    $dateOfVisit = new \DateTime('2017-11-01'); // un dimanche
+    $dateOfVisit = new \DateTime('2017-11-01'); // 11 novembre
     $this->assertSame( 33, $dateService->isDateOk($dateOfVisit));
 
-    $dateOfVisit = new \DateTime('2017-12-25'); // un dimanche
+    $dateOfVisit = new \DateTime('2017-12-25'); // Noël
     $this->assertSame( 34, $dateService->isDateOk($dateOfVisit));
 
-    $dateOfVisit = new \DateTime('2018-05-01'); // un dimanche
+    $dateOfVisit = new \DateTime('2018-05-01'); // Premier mai
     $this->assertSame( 32, $dateService->isDateOk($dateOfVisit));
-    
+
 
   }
 

@@ -21,13 +21,13 @@ class VisitorFormType extends AbstractType
     {
       $today = new \DateTime();
       $thisYear = $today->format('Y');
-
-        $builder
+      $defaultBirthDay = new \DateTime('1970-06-15');
+      $builder
             ->add('ticket', TicketType::class ,array('label' => 'Billet'))
             ->add('name',TextType::class,array('label' => 'Nom'))
             ->add('firstName',TextType::class,array('label' => 'Prénom'))
-            ->add('birthDate', BirthdayType::class,array('label' => 'Date de naissance', 'years'=> range(1917,$thisYear)))
-            ->add('country', CountryType::class,array('label' => 'Pays'))
+            ->add('birthDate', BirthdayType::class,array('label' => 'Date de naissance', 'years'=> range(1917,$thisYear) , 'data'=>$defaultBirthDay) )
+            ->add('country', CountryType::class,array('label' => 'Pays','data' => 'FR' ))
             ->add('reducePrice', CheckboxType::class,  array('label' => 'Tarif Réduit', 'required' => false)    )
         ;
     }

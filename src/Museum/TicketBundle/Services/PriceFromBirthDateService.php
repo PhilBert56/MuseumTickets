@@ -6,7 +6,7 @@ namespace Museum\TicketBundle\Services;
 
 class PriceFromBirthDateService
 {
-  
+
   public function getPriceCode($visitor, $dateOfVisit){
       /* Gestion date anniversaire pour determiner age du visiteur */
       $birthDate = $visitor->getBirthDate();
@@ -55,5 +55,13 @@ class PriceFromBirthDateService
       return $price;
 
   }
+
+  public function setPrice($ticketFolder, $visitor,$ticket) {
+
+    $visitor->setTicketInfo($dateOfVisit, $this);
+
+    
+  }
+
 
 }

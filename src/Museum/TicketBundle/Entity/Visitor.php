@@ -53,7 +53,7 @@ class Visitor
 
 
     /**
-     * @ORM\OneToOne(targetEntity="Ticket", mappedBy="visitor")
+     * @ORM\OneToOne(targetEntity="Ticket", mappedBy="visitor", cascade={"persist"})
      */
     private $ticket;
 

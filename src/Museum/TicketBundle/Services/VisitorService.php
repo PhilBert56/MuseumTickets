@@ -13,7 +13,6 @@ class VisitorService {
   public function __construct(Session $session)
   {
     $this->session = $session;
-    //$this->locale = $locale;
   }
 
 

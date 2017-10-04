@@ -41,12 +41,13 @@ class VisitorController extends Controller
             // On vérifie que les valeurs entrées sont correctes
 
             if ($form->isValid()) {
-                /* Vérifier si l'heure permet de commander un billet à la journée */
+
 
                 $dateOfVisit = $form['ticket']['dateOfVisit']->getData();
 
                 $dateService = $this->container->get('museum.isDateOfVisitOK');
 
+                /* Vérifier si la date de visite est acceptable */
                 $messages = $dateService->checkDateOfVisit($dateOfVisit);
                 if ($messages[0]){
                   $this->addFlash('error', $messages[1]);
@@ -54,17 +55,12 @@ class VisitorController extends Controller
                       'visitorForm' => $form->createView()
                   ]);
                 }
-/*
-                else {
-                  // date acceptée
-                  $ticketFolder->setDateOfVisit($dateOfVisit);
-                }
+
+                /*
+                vérifier si heure de la commande n'impose pas seulement une demi-journée
+                ou si la fermeture du musée est imminente
                 */
-
-
-                /* si heure du jour impose demi-journée ou fermeture imminente */
                 $messages = $dateService->checkHourOfVisit($dateOfVisit);
-
                 if ($messages[0]){
                   $this->addFlash('error', $messages[1]);
                   return $this->render('MuseumTicketBundle:Museum:visitorView.html.twig', [
@@ -73,11 +69,12 @@ class VisitorController extends Controller
 
                 }
 
-                $ticketFolder->setDateOfVisit($dateOfVisit);
-
+                /*
+                  Déterminer le prix du billet et stocker les données saisies et validées
+                */
                 $priceFromBirthDateService = $this->container->get('museum.priceFromBirthDate');
                 $visitor->setTicketInfo($dateOfVisit, $priceFromBirthDateService);
-                
+
                 $ticketFolder->addTicketToTicketFolder($ticket);
 
             }

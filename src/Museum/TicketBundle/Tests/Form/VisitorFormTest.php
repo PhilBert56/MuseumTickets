@@ -16,15 +16,17 @@ class VisitorControllerTest extends WebTestCase
 
         $form = $crawler->selectButton('Confirmer')->form();
 
+
+
         /* Modèle du cours
         $form['food[username]'] = 'John Doe';
         $form['food[entitled]'] = 'Plat de pâtes';
         $form['food[calories]'] = 600;
         $crawler = $client->submit($form);
 */
-        $form['ticket[dateOfVisit]'] = '30/09/2017';
+        $form['ticketbundle_visitor[country]'] = 'GB';
 
-
-        echo $client->getResponse()->getContent();
+        $this->assertContains('France', $client->getResponse()->getContent());
+        //echo $client->getResponse()->getContent();
     }
 }

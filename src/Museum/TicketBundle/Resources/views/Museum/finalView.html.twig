@@ -1,10 +1,43 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<blockquote>
+    <h3>Votre commande</h3>
 
-    <h3><span>You will receive your tickets by email soon</h3>
+    <table class="pure-table pure-table-bordered">
+    <thead>
+            <tr>
+                <th>Date de la visite</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Date de naissance</th>
+                <th>Prix (€)</th>
+            </tr>
+      </thead>
+        <tbody>
+        {% for ticket in tickets %}
+            <tr>
+                <td>{{ ticket.dateOfVisit | date('d-m-Y') }}</td>
+                <td>{{ ticket.visitor.firstName }}</td>
+                <td>{{ ticket.visitor.name }}</td>
+                <td>{{ ticket.visitor.birthDate | date('d-m-Y') }}</td>
+                <td>{{ ticket.price }} € </td>
+            </tr>
+        {%  endfor %}
+
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><strong>TOTAL</strong></td>
+        <td>{{ total }} € </td>
+        </tbody>
+      </table>
+      <br/>
+      <br/>
 
 
-
+    </blockquote>
+    <br/>
+    <br/>
 
 {% endblock %}
