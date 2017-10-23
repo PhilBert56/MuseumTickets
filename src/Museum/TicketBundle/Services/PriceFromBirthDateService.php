@@ -3,20 +3,22 @@
 namespace Museum\TicketBundle\Services;
 //use Museum\TicketBundle\Entity\WorkingDay;
 
+use Museum\TicketBundle\TemporaryObjects\AgeLimits;
 
 class PriceFromBirthDateService
 {
 
   public function getPriceCode($visitor, $dateOfVisit){
       /* Gestion date anniversaire pour determiner age du visiteur */
+      $ageLimits = new AgeLimits();
       $birthDate = $visitor->getBirthDate();
       $age = $visitor->age($birthDate, $dateOfVisit);
       $priceCode = -1;
-      if($age < 4 ) $priceCode = 0;
-      if($age >= 4 && $age <= 12 ) $priceCode = 1;
-      if($age > 12 && $age < 60 ) $priceCode = 2;
-      if($age >= 60 ) $priceCode = 3;
-      if($age > 12 && $visitor->getReducePrice() ) $priceCode = 4 ;
+      if($age < $ageLimits->baby ) $priceCode = 0;
+      if($age >= $ageLimits->baby && $age < $ageLimits->teen ) $priceCode = 1;
+      if($age >= $ageLimits->teen && $age < $ageLimits->senior ) $priceCode = 2;
+      if($age >= $ageLimits->senior ) $priceCode = 3;
+      if($age >= $ageLimits->teen && $visitor->getReducePrice() ) $priceCode = 4 ;
       return $priceCode;
   }
 
@@ -60,7 +62,7 @@ class PriceFromBirthDateService
 
     $visitor->setTicketInfo($dateOfVisit, $this);
 
-    
+
   }
 
 

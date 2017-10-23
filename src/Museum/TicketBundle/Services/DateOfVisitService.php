@@ -160,7 +160,7 @@ public function getHolidayTable($year){
 
   public function getRefusalMotivation($codeRefus) {
 
-/* la traduction des messages en anglis est assurée par le traducteur des Symfony */
+/* la traduction des messages en anglais est assurée par le traducteur de Symfony */
       $motifRefusFr = [
           0 => 'ok',
           1 => "La date selectionnée est dépassée",
