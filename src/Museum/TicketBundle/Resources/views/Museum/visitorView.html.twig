@@ -2,7 +2,7 @@
 
 {% block body %}
 <blockquote>
-    <h3><span>Informations sur le visiteur</h3>
+    <h3><span>{{'visitor.title'|trans}}</h3>
 
     {{ form_start(visitorForm ) }}
 
@@ -13,10 +13,10 @@
     {{ form_widget(visitorForm) }}
     <br/>
 
-    <button type="submit" class ="pure-button">Confirmer</button>
+    <button type="submit" class ="pure-button">{{'visitor.confirm'|trans}}</button>
 
-    <a href="{{ path('visitor') }}" class="pure-button">Ajouter un autre visiteur </a>
-    <a href="{{ path('recapTickets') }}" class="pure-button">Payer </a>
+    <a href="{{ path('visitor') }}" class="pure-button">{{'visitor.addNew'|trans}} </a>
+    <a href="{{ path('recapTickets') }}" class="pure-button">{{'visitor.pay'|trans}} </a>
 
 
     {{ form_end(visitorForm) }}

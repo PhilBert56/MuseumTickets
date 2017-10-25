@@ -2,17 +2,17 @@
 
 {% block body %}
 <blockquote>
-    <h3>Votre commande</h3>
+    <h3>{{'orderRecap.title' |trans}}</h3>
 
     <table class="pure-table pure-table-bordered">
     <thead>
             <tr>
-                <th>Date de la visite</th>
-                <th>Prénom</th>
-                <th>Nom</th>
-                <th>Date de naissance</th>
-                <th>Prix (€)</th>
-                <th>Annulation</th>
+                <th>{{'orderRecap.date'|trans}}</th>
+                <th>{{'orderRecap.firstname'|trans}}</th>
+                <th>{{'orderRecap.name'|trans}}</th>
+                <th>{{'orderRecap.birthDate'|trans}}</th>
+                <th>{{'orderRecap.price'|trans}} (€)</th>
+                <th>{{'orderRecap.cancelation'|trans}}</th>
             </tr>
       </thead>
         <tbody>
@@ -25,7 +25,7 @@
                 <td>{{ ticket.price }} € </td>
                 <td> <a href="{{ path('deleteVisitor',
                      {'firstName' : ticket.visitor.firstName , 'lastName' : ticket.visitor.name })  }}"
-                     class="pure-button">Annuler</a>
+                     class="pure-button">{{'orderRecap.cancel'|trans}}</a>
                 </td>
             </tr>
         {%  endfor %}
@@ -33,7 +33,7 @@
         <td></td>
         <td></td>
         <td></td>
-        <td><strong>TOTAL</strong></td>
+        <td><strong>{{'orderRecap.amount'|trans}}</strong></td>
         <td>{{ total }} € </td>
         <td></td>
         </tbody>
@@ -44,8 +44,8 @@
     {{ form_widget(recapAndPayForm) }}
 
     <br/>
-    <a href="{{ path('visitor')  }}" class="pure-button">Ajouter un visiteur</a>
-    <button type="submit" class ="pure-button">Confirmer la commande</button>
+    <a href="{{ path('visitor')  }}" class="pure-button">{{'orderRecap.addVisitor'|trans}}</a>
+    <button type="submit" class ="pure-button">{{'orderRecap.confirm'|trans}}</button>
 
     <form action="" method="POST">
 

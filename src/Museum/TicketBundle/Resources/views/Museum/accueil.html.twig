@@ -7,25 +7,25 @@
 
 <blockquote>
 
-    <h1>Billetterie du Musée du Louvre</h1>
+    <h1>{{'home.title'|trans}}</h1>
 
 
 </br>
 
-<div class="content"> Le Musée est ouvert tous les jours sauf le mardi </br></br>
-Le Musée est fermé les 1er mai, 1er novembre et 25 décembre <br></br>
-Le Musée est gratuit le dimanche et les jours fériés sauf 1er mai, 1er novembre et 25 décembre </br></br>
-<strong>TARIFS</strong> </br>
-Gratuit pour les moins de 4 ans </br>
-Gratuit pour les demandeurs d'emploi (sur présentation d'un justificatif)</br>
-De 4 à 12 ans : 8 € </br>
-Plus de 12 ans jusqu'à 60 ans : 16 € </br>
-Plus de 60 ans : 12 € </br></br>
-Tarif Réduit : 10 € </br>
-étudiant, employé du musée, d’un service du Ministère de la Culture, militaire…</br>
-sur présentation d'un justificatif</br>
+<div class="content"> {{'home.open'|trans}}</br></br>
+{{'home.closed'|trans}}<br></br>
+{{ 'home.free'|trans}}</br></br>
+<strong>{{'home.pricing'|trans}}</strong> </br>
+{{ 'home.baby'|trans ({'%baby%': ages.baby}) }} </br>
+{{ 'home.unemployed'|trans }}</br>
+{{ 'home.child' |trans ({'%baby%' :ages.baby , '%beforeTeen%' : ages.teen - 1 , '%priceChild%':prices.priceChild })}} </br>
+{{ 'home.adult'|trans ({'%beforeTeen%' :ages.teen - 1 , '%senior%' : ages.senior , '%priceAdult%':prices.priceAdult})}}</br>
+{{ 'home.senior'|trans ({'%senior%':ages.senior,  '%priceSenior%': prices.priceSenior})}}</br></br>
+{{'home.reduce.pricing'|trans ({'%priceReduced%': prices.priceReduced}) }}</br>
+{{'home.reduce.benefit'|trans}}</br>
+{{'home.reduce.condition'|trans }}</br>
 
-</br> Après 14 h : Billets pour l'après-midi seulement </br>
+</br>{{'home.afternoon'|trans}} </br>
 
 
 </blockquote>

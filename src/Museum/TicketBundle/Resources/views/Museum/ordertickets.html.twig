@@ -3,12 +3,12 @@
 {% block body %}
 
   <blockquote>
-    <h3><span>Commander des billets d'entrée au musée</h3>
+    <h3><span>{{'orderTickets.title'|trans}}</h3>
 
     {{ form_start(orderForm)  }}
           {{ form_widget(orderForm) }}
           <br/>
-          <button type="submit" class = "pure-button">Ajouter un visiteur à votre commande</button>
+          <button type="submit" class = "pure-button">{{'orderTickets.command'|trans}}</button>
 
           {{ form_end(orderForm) }}
           <br/>

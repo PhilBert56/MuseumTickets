@@ -23,6 +23,10 @@ class VisitorController extends Controller
     {
         $session = $this->get('session');
 
+        //$locale = $request->getLocale();
+        //$session->set('_locale', $locale);
+
+
         $ticketFolder = $session->get('ticketFolder');
 
         /* création du visiteur et du ticket associé */
@@ -50,7 +54,11 @@ class VisitorController extends Controller
                 /* Vérifier si la date de visite est acceptable */
                 $messages = $dateService->checkDateOfVisit($dateOfVisit);
                 if ($messages[0]){
-                  $this->addFlash('error', $messages[1]);
+                  $translator = $this->get('translator');
+                  $translatedMessage1 = $translator->trans($messages[1]);
+                  $translatedMessage2 = $translator->trans($messages[2]);
+                  $translatedMessage = $translatedMessage1.' '.$translatedMessage2;
+                  $this->addFlash('error',$translatedMessage );
                   return $this->render('MuseumTicketBundle:Museum:visitorView.html.twig', [
                       'visitorForm' => $form->createView()
                   ]);
@@ -62,7 +70,12 @@ class VisitorController extends Controller
                 */
                 $messages = $dateService->checkHourOfVisit($dateOfVisit);
                 if ($messages[0]){
-                  $this->addFlash('error', $messages[1]);
+                  dump($messages);
+                  $translator = $this->get('translator');
+                  $translatedMessage1 = $translator->trans($messages[1]);
+                  $translatedMessage2 = $translator->trans($messages[2]);
+                  $translatedMessage = $translatedMessage1.' : '.$translatedMessage2;
+                  $this->addFlash('error', $translatedMessage);
                   return $this->render('MuseumTicketBundle:Museum:visitorView.html.twig', [
                       'visitorForm' => $form->createView()
                   ]);
@@ -78,8 +91,9 @@ class VisitorController extends Controller
                 $ticketFolder->addTicketToTicketFolder($ticket);
 
             }
-
-            $this->addFlash('success', 'Prix du billet : '.$ticket->getPrice().' € ');
+            $translator = $this->get('translator');
+            $translatedMessage = $translator->trans('flashMessage.ticketPrice');
+            $this->addFlash('success', $translatedMessage.' : '.$ticket->getPrice().' € ');
             return $this->render('MuseumTicketBundle:Museum:visitorView.html.twig', [
                 'visitorForm' => $form->createView()
             ]);

@@ -17,7 +17,9 @@ class FinalizeOrderController extends Controller
        $ticketFolder = $this->get('session')->get('ticketFolder');
        $isPaymentAlreadyProcessed = $ticketFolder->getPaymentAlreadyProcessed();
        if ($isPaymentAlreadyProcessed){
-         $this->addFlash('error', "Le paiement a déjà été effectué");
+         $translator = $this->get('translator');
+         $translatedMessage = $translator->trans('flashMessage.alreadyPaid');
+         $this->addFlash('error',$translatedMessage );
          return;
        }
        $totalAmount = $ticketFolder->gettotalAmount();

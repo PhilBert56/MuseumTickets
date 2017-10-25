@@ -11,6 +11,12 @@ class TicketFolderController extends Controller
     */
     public function orderTicketsAction(Request $request){
 
+      //$locale = $request->getLocale();
+
+      //$locale = $this->get('session')->get('_locale');
+
+      
+
       $session = $this->get('session');
       $ticketFolder = new TicketFolder($session);
       //$ticketFolder = $this->getTicketFolder();

@@ -5,7 +5,7 @@
                 <span class="input-group-addon">
                      <i class="fa fa-user"></i>
                  </span>
-                <input data-stripe="name" class="form-control" type="text" autocomplete="off" id="card-name" required placeholder="Nom"/>
+                <input data-stripe="name" class="form-control" type="text" autocomplete="off" id="card-name" required placeholder={{'processOrder.name' |trans}}/>
             </div>
         </div>
     </div>
@@ -16,7 +16,7 @@
                 <span class="input-group-addon">
                      <i class="fa fa-credit-card"></i>
                  </span>
-                <input data-stripe="number" type="text" autocomplete="off" class="form-control js-cc-number" id="carte-numéro" required placeholder="Numéro de la carte"/>
+                <input data-stripe="number" type="text" autocomplete="off" class="form-control js-cc-number" id="carte-numéro" required placeholder={{'processOrder.cardNumber'|trans}}/>
             </div>
         </div>
     </div>

@@ -1,1 +1,76 @@
-Message en Français : Message in English
+hello: Hello
+menu0: Louvre Museum
+menu1: Home
+menu2: Order Tickets
+menu3: Français
+home:
+  title: "Louvre Museum Ticketing"
+  open: "Museum in open everyday of the week except Thursday"
+  closed: "Museum is closed on may 1st, november 1st and december 25th"
+  free: "Museum is free on sunday and bankholiday except may 1st, november 1st and decembre 25th"
+  pricing: "PRICING"
+  baby: "Free under %baby% "
+  unemployed: "Free for Unemployment Benefit (justification required)"
+  child: 'Between %baby% and %beforeTeen% : %priceChild% €'
+  adult: "Between %beforeTeen% to %senior% : %priceAdult% €"
+  senior: "Above %senior% : %priceSenior% €"
+  reduce.pricing: "Reduced price : %priceReduced% €"
+  reduce.benefit: "For students, Louvre museum employees, Culture Ministry employees, army employees…"
+  reduce.condition: "justication required"
+  afternoon: "Afer 2 p.m. : Tickets for afternoon only"
+orderTickets:
+  title: "Order your tickets"
+  command: "Add a new visitor to your order"
+visitor:
+  title: Visitor Information
+  ticket: Ticket
+  date: Visit Date
+  afternoon: Afternoon only
+  name: Name
+  firstName: Firstname
+  birthDate: Birthdate
+  country: Country
+  reduction: Reduced Price
+  confirm: Confirm
+  addNew: Add a new visitor
+  pay: Pay
+orderRecap:
+  title: Your order
+  date: Date of visit
+  firstname: Firstname
+  name: Name
+  birthDate: Birthdate
+  price: Price
+  cancelation: Cancellation
+  cancel: Cancel
+  amount: Amount
+  addVisitor: Add a new visitor
+  confirm: Confirm
+processOrder:
+  title: Louvre Museum
+  subtitle: Tickets order
+  email: e-mail adress
+  cardNumber: Card number
+  formatDate : MM/AA
+  cvv: CVV
+  remember : Remember me
+  pay: Pay
+flashMessage:
+  ticketPrice : Ticket Price
+  orderRefused : You cannot order a ticket for this date :
+  refusalMotivation-0: ok
+  refusalMotivation-1: Date is already passed
+  refusalMotivation-21: Museum entrance is free on sunday
+  refusalMotivation-22: Museum entrance is free on bankholiday
+  refusalMotivation-31: Museum is closed on Tuesday
+  refusalMotivation-32: Museum is closed may 1st
+  refusalMotivation-33: Museum is closed november 1st
+  refusalMotivation-34: Museum is closed december 25th
+  refusalMotivation-4: Maximum capacity reached (More than 1000 tickets sold this day)
+  refusalMotivation-51: Only afternoon in feasable now
+  refusalMotivation-52: It is late to order a ticket for today
+  alreadyPaid: Paiement already processed
+  typingIncorrect: Incorrect typing
+  orderSuccess: You will receive your tickets at  :
+  orderFailure: Order already paid or it is not possible to validate this order
+  ticketSent: Tickets sent

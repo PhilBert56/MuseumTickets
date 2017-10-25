@@ -3,6 +3,8 @@
 namespace Museum\TicketBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Museum\TicketBundle\TemporaryObjects\AgeLimits;
+use Museum\TicketBundle\TemporaryObjects\Prices;
 
 class AccueilController extends Controller
 {
@@ -11,6 +13,12 @@ class AccueilController extends Controller
 */
   public function accueilAction()
   {
-    return $this->render('MuseumTicketBundle:Museum:accueil.html.twig');
+    $ages = new AgeLimits();
+    $prices = new Prices();
+
+    return $this->render('MuseumTicketBundle:Museum:accueil.html.twig', [
+      'ages' => $ages,
+      'prices' => $prices
+    ]);
   }
 }

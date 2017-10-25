@@ -23,12 +23,12 @@ class VisitorFormType extends AbstractType
       $thisYear = $today->format('Y');
       $defaultBirthDay = new \DateTime('1970-06-15');
       $builder
-            ->add('ticket', TicketType::class ,array('label' => 'Billet'))
-            ->add('name',TextType::class,array('label' => 'Nom'))
-            ->add('firstName',TextType::class,array('label' => 'Prénom'))
-            ->add('birthDate', BirthdayType::class,array('label' => 'Date de naissance', 'years'=> range(1917,$thisYear) , 'data'=>$defaultBirthDay) )
-            ->add('country', CountryType::class,array('label' => 'Pays','data' => 'FR' ))
-            ->add('reducePrice', CheckboxType::class,  array('label' => 'Tarif Réduit', 'required' => false)    )
+            ->add('ticket', TicketType::class ,array('label' => 'visitor.ticket'))
+            ->add('name',TextType::class,array('label' => 'visitor.name'))
+            ->add('firstName',TextType::class,array('label' => 'visitor.firstName'))
+            ->add('birthDate', BirthdayType::class,array('label' => 'visitor.birthDate', 'years'=> range(1917,$thisYear) , 'data'=>$defaultBirthDay) )
+            ->add('country', CountryType::class,array('label' => 'visitor.country','data' => 'FR' ))
+            ->add('reducePrice', CheckboxType::class,  array('label' => 'visitor.reduction', 'required' => false)    )
         ;
     }
 

@@ -21,11 +21,11 @@ class TicketType extends AbstractType
             ->add('dateOfVisit', DateType::class,
                 array(
                     'data_class' => null,
-                    'label' => "Date de la visite"
+                    'label' => "visitor.date"
                     //'mapped' => false,
                 ))
             //->add('dateOfVisit')
-            ->add('halfDay',CheckboxType::class, array('label' => 'Après-midi seulement', 'required' => false) )
+            ->add('halfDay',CheckboxType::class, array('label' => 'visitor.afternoon', 'required' => false) )
         ;
     }
 

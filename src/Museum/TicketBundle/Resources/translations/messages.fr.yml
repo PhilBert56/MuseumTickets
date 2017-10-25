@@ -1,2 +1,76 @@
-French : Français
-English : Anglais
+hello: 'Bonjour'
+menu0: 'Musée du Louvre'
+menu1: 'Accueil'
+menu2: 'Commander des billets'
+menu3: 'English'
+home:
+  title: "Billeterie du Musée du Louvre"
+  open: "Le Musée est ouvert tous les jours sauf le mardi"
+  closed: "Le Musée est fermé les 1er mai, 1er novembre et 25 décembre"
+  free: "Le Musée est gratuit le dimanche et les jours fériés sauf 1er mai, 1er novembre et 25 décembre"
+  pricing: "TARIFS"
+  baby: "Gratuit pour les moins de %baby% ans"
+  unemployed: "Gratuit pour les demandeurs d'emploi (sur présentation d'un justificatif)"
+  child: 'De %baby% à %beforeTeen% ans : %priceChild% €'
+  adult: "Plus de %beforeTeen% ans jusqu'à %senior% ans : %priceAdult% €"
+  senior: "Plus de %senior% ans : %priceSenior% €"
+  reduce.pricing: "Tarif Réduit : %priceReduced% €"
+  reduce.benefit: "étudiant, employé du musée, d’un service du Ministère de la Culture, militaire…"
+  reduce.condition: "sur présentation d'un justificatif"
+  afternoon : "Après 14 h : Billets pour l'après-midi seulement"
+orderTickets:
+  title: "Commander des billets d'entrée au musée"
+  command: "Ajouter un visiteur à votre commande"
+visitor:
+  title: Informations sur le visiteur
+  ticket: Billet
+  date: Date de la visite
+  afternoon: Après-midi seulement
+  name: Nom
+  firstName: Prénom
+  birthDate: Date de naissance
+  country: Pays
+  reduction: Tarif Réduit
+  confirm: Confirmer
+  addNew: Ajouter un autre visiteur
+  pay: Payer
+orderRecap:
+  title: Votre commande
+  date: Date de la visite
+  firstname: Prénom
+  name: Nom
+  birthDate: Date de naissance
+  price: Prix
+  cancelation: Annulation
+  cancel: Annuler
+  amount: Total
+  addVisitor: Ajouter un visiteur
+  confirm: Confirmer la commande
+processOrder:
+  title: Musée du Louvre
+  subtitle: Réservation tickets
+  email: Adresse e-mail
+  cardNumber: Numéro de carte
+  formatDate : MM/AA
+  cvv: CVV
+  remember : Se souvenir de moi
+  pay: Payer
+flashMessage:
+  ticketPrice : Prix du billet
+  orderRefused : Vous ne pouvez pas commander de billet à cette date :
+  refusalMotivation-0: ok
+  refusalMotivation-1: La date selectionnée est dépassée
+  refusalMotivation-21: L'entrée au musée est gratuite le dimanche
+  refusalMotivation-22: L'entrée au musée est gratuite les jours fériés
+  refusalMotivation-31: Le musée est fermé le mardi
+  refusalMotivation-32: Le musée est fermé 1er mai
+  refusalMotivation-33: Le musée est fermé le 1er novembre
+  refusalMotivation-34: Le musée est fermé le 25 décembre
+  refusalMotivation-4: Capacité maximum du musée atteinte ce jour (Plus de 1000 billets déjà vendus)
+  refusalMotivation-51: Il n'est plus posssible de commander de billets que pour cet après-midi
+  refusalMotivation-52: Trop tard pour commander un billet aujourd'hui
+  alreadyPaid: Le paiement a déjà été effectué
+  typingIncorrect: Saisie incorrecte
+  orderSuccess: Vous allez recevoir vos billets à l'adresse :
+  orderFailure: Cette commande a déjà été payée ou le paiement n'a pu être validé
+  ticketSent: Billet(s) envoyé(s)

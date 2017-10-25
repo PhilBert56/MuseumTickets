@@ -10,10 +10,9 @@ class DateOfVisitService
   private $translation;
   //private $locale;
 
-  public function __construct(\Doctrine\ORM\EntityManager $entityManager , $translation)
+  public function __construct(\Doctrine\ORM\EntityManager $entityManager)
   {
     $this->em = $entityManager;
-    $this->translation = $translation;
   }
 
   public function isDateOk($date) {
@@ -162,17 +161,17 @@ public function getHolidayTable($year){
 
 /* la traduction des messages en anglais est assurée par le traducteur de Symfony */
       $motifRefusFr = [
-          0 => 'ok',
-          1 => "La date selectionnée est dépassée",
-          21 => "L'entrée au musée est gratuite le dimanche",
-          22 => "L'entrée au musée est gratuite les jours fériés" ,
-          31 => "Le musée est fermé le mardi",
-          32 => "Le musée est fermé 1er mai",
-          33 => "Le musée est fermé le 1er novembre",
-          34 => "Le musée est fermé le 25 décembre",
-          4 => "Capacité maximum du musée atteinte ce jour (Plus de 1000 billets déjà vendus)",
-          51 => "Il n'est plus posssible de commander de billets que pour cet après-midi",
-          52 => "Trop tard pour commander un billet aujourd'hui"
+          0 => 'flashMessage.refusalMotivation-0',
+          1 => 'flashMessage.refusalMotivation-1',
+          21 => 'flashMessage.refusalMotivation-21',
+          22 => 'flashMessage.refusalMotivation-22' ,
+          31 => 'flashMessage.refusalMotivation-31',
+          32 => 'flashMessage.refusalMotivation-32',
+          33 => 'flashMessage.refusalMotivation-33',
+          34 => 'flashMessage.refusalMotivation-34',
+          4 => 'flashMessage.refusalMotivation-4',
+          51 => 'flashMessage.refusalMotivation-51',
+          52 => 'flashMessage.refusalMotivation-52'
       ];
 
 
@@ -247,16 +246,19 @@ public function getHolidayTable($year){
     $hourIsOkCode = $this->isFullDayOrderStillPossible($dateOfVisit);
     /* si heure du jour impose demi-journée ou fermeture imminente */
     if( $hourIsOkCode == 51 && !$ticket->getHalfDay()) {
-        /* l'utilisateur doit cocher demi-journée */
-        $message1 = $this->translation->getTranslatedMessage(1, 'fr');
+        /* l'utilisateur doit cocher demie-journée */
+        //$message1 = $this->translation->getTranslatedMessage(1, 'fr');
+        //$message2 = $this->getRefusalMotivation($hourIsOkCode);
+        $message1 = 'flashMessage.orderRefused';
         $message2 = $this->getRefusalMotivation($hourIsOkCode);
-        return [true, $message1.' '.$message2];
+        return [true, $message1,$message2];
     }
     if( $hourIsOkCode == 52 ) {
-        $message1 = $this->translation->getTranslatedMessage(1, 'fr');
+        //$message1 = $this->translation->getTranslatedMessage(1, 'fr');
+        $message1 = 'flashMessage.orderRefused';
         $message2 = $this->getRefusalMotivation($hourIsOkCode);
 
-        return [true, $message1.' '.$message2];
+        return [true, $message1,$message2];
     }
 
 
@@ -268,10 +270,11 @@ public function getHolidayTable($year){
     $codeDateOk = $this->isDateOk($dateOfVisit);
     /* Si date infaisable */
     if ($codeDateOk !== 0) {
-        $message1 = $this->translation->getTranslatedMessage(1, 'fr');
+        //$message1 = $this->translation->getTranslatedMessage(1, 'fr');
+        $message1 = 'flashMessage.orderRefused';
         $message2 = $this->getRefusalMotivation($codeDateOk);
 
-        return [true, $message1.' '.$message2];
+        return [true, $message1,$message2];
     }
 
 

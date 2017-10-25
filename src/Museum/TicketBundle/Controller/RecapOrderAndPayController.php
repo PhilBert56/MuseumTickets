@@ -21,6 +21,7 @@ class RecapOrderAndPayController extends Controller
     public function recapTicketsAction(Request $request)
     {
         $session = $this->get('session');
+
         $ticketFolder = $session->get('ticketFolder');
         $tickets = $ticketFolder->getTickets();
         $customer = $session->get('customer');
@@ -50,7 +51,9 @@ class RecapOrderAndPayController extends Controller
                 $ticketFolder->setCustomer($customer);
                 $session->set('ticketOrder', $ticketFolder);
             } else {
-              $this->addFlash('error', "Saisie incorrecte");
+              $translator = $this->get('translator');
+              $translatedMessage = $translator->trans('flashMessage.typingIncorrect');
+              $this->addFlash('error',$translatedMessage );
               return;
             }
 /*
@@ -82,10 +85,13 @@ class RecapOrderAndPayController extends Controller
                 $mailer = $this->get('mailer');
                 $ticketFolder->confirmTicketsByEmail($mailerUser, $mailer);
                 $ticketFolder->setPaymentAlreadyProcessed(true);
-
-                $this->addFlash('success', "Vous allez recevoir vos billets à l'adresse : ".$customer->getEmail());
+                $translator = $this->get('translator');
+                $translatedMessage = $translator->trans('flashMessage.orderSuccess ');
+                $this->addFlash('success', $translatedMessage.$customer->getEmail());
               } else {
-                $this->addFlash('error', "Cette commande a déjà été payée ou le paiement n'a pas pu être validé");
+                $translator = $this->get('translator');
+                $translatedMessage = $translator->trans('flashMessage.orderFailure');
+                $this->addFlash('error', $translatedMessage);
               }
 
 
