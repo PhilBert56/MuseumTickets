@@ -58,11 +58,11 @@
       data-key="pk_test_TLe3EYdNdUBIicMKOH6rxX3f"
       data-amount= {{total * 100}}
       data-currency="EUR"
-      data-name="Musée du Louvre"
-      data-description="Réservation tickets"
-      data-label={{ "Payer" | trans}}
+      data-name={{'creditCard.dataName'|trans}}
+      data-description={{'creditCard.dataDescription'|trans}}
+      data-label={{ 'creditCard.dataLabel'| trans}}
       data-zip-code="false"
-      data-locale="auto">
+      data-locale= {{ locale }}
     </script>
 
 

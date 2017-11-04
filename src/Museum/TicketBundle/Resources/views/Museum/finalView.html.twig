@@ -2,16 +2,16 @@
 
 {% block body %}
 <blockquote>
-    <h3>Votre commande</h3>
+    <h3>{{'orderRecap.title'|trans}}</h3>
 
     <table class="pure-table pure-table-bordered">
     <thead>
             <tr>
-                <th>Date de la visite</th>
-                <th>Prénom</th>
-                <th>Nom</th>
-                <th>Date de naissance</th>
-                <th>Prix (€)</th>
+                <th>{{'orderRecap.date'|trans}}</th>
+                <th>{{'orderRecap.firstname'|trans}}</th>
+                <th>{{'orderRecap.name'|trans}}/th>
+                <th>{{'orderRecap.birthDate'|trans }}</th>
+                <th>{{'orderRecap.price'|trans}} (€)</th>
             </tr>
       </thead>
         <tbody>
@@ -28,7 +28,7 @@
         <td></td>
         <td></td>
         <td></td>
-        <td><strong>TOTAL</strong></td>
+        <td><strong>{{'orderRecap.amount'|trans}}</strong></td>
         <td>{{ total }} € </td>
         </tbody>
       </table>

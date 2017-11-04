@@ -68,9 +68,9 @@ class VisitorController extends Controller
                 vérifier si heure de la commande n'impose pas seulement une demi-journée
                 ou si la fermeture du musée est imminente
                 */
-                $messages = $dateService->checkHourOfVisit($dateOfVisit);
+                $messages = $dateService->checkHourOfVisit($dateOfVisit, $ticket);
                 if ($messages[0]){
-                  dump($messages);
+                  //dump($messages);
                   $translator = $this->get('translator');
                   $translatedMessage1 = $translator->trans($messages[1]);
                   $translatedMessage2 = $translator->trans($messages[2]);

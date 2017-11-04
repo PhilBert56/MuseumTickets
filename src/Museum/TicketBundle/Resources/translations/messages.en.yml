@@ -54,7 +54,11 @@ processOrder:
   formatDate : MM/AA
   cvv: CVV
   remember : Remember me
-  pay: Pay
+  pay: Charge
+creditCard:
+  dataName: Louvre Museum
+  dataDescription: Ticket ordering
+  dataLabel: Pay €
 flashMessage:
   ticketPrice : Ticket Price
   orderRefused : You cannot order a ticket for this date :

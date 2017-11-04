@@ -55,6 +55,10 @@ processOrder:
   cvv: CVV
   remember : Se souvenir de moi
   pay: Payer
+creditCard:
+  dataName: Musée du Louvre
+  dataDescription: Réservation tickets
+  dataLabel: Payer
 flashMessage:
   ticketPrice : Prix du billet
   orderRefused : Vous ne pouvez pas commander de billet à cette date :

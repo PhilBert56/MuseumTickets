@@ -86,8 +86,8 @@ class RecapOrderAndPayController extends Controller
                 $ticketFolder->confirmTicketsByEmail($mailerUser, $mailer);
                 $ticketFolder->setPaymentAlreadyProcessed(true);
                 $translator = $this->get('translator');
-                $translatedMessage = $translator->trans('flashMessage.orderSuccess ');
-                $this->addFlash('success', $translatedMessage.$customer->getEmail());
+                $translatedMessage = $translator->trans('flashMessage.orderSuccess');
+                $this->addFlash('success', $translatedMessage.' '.$customer->getEmail());
               } else {
                 $translator = $this->get('translator');
                 $translatedMessage = $translator->trans('flashMessage.orderFailure');
@@ -102,10 +102,12 @@ class RecapOrderAndPayController extends Controller
             ]);
         }
 
+        $locale = $request->getLocale();
         return $this->render('MuseumTicketBundle:Museum:recapAndPay.html.twig',[
             'recapAndPayForm' => $form->createView(),
             'tickets'=>$tickets,
-            'total' =>$totalAmount
+            'total' =>$totalAmount,
+            'locale' => $locale
         ]);
 
     }

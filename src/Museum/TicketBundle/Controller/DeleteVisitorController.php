@@ -16,7 +16,7 @@ class DeleteVisitorController extends Controller
     /**
      * @Route("/DeleteVisitor/", name = "deleteVisitor")
      */
-    public function deleteVisitorAction()
+    public function deleteVisitorAction(Request $request)
     {
         $visitorService = $this->container->get('museum.visitorManagement');
 
@@ -40,10 +40,15 @@ class DeleteVisitorController extends Controller
 
 
         $ticketFolder = $visitorService->visitorGetAssociatedTicketFolder();
+        $locale = $request->getLocale();
+
+        return $this->redirect( $this->generateUrl('recapTickets'));
+        /*
         return $this->render('MuseumTicketBundle:Museum:recapAndPay.html.twig',[
             'recapAndPayForm' => $form->createView(),
             'tickets'=>$ticketFolder->getTickets(),
-            'total' => $ticketFolder->getTotalAmount()
-        ]);
+            'total' => $ticketFolder->getTotalAmount(),
+            'locale' => $locale
+        ]);*/
     }
 }

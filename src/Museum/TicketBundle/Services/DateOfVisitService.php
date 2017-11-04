@@ -203,21 +203,7 @@ public function getHolidayTable($year){
       return 0;
   }
 
-/*
-  public function getTranslatedMessage($messageCode, $langue) {
 
-
-      $translationFr = [
-          1 => 'Vous ne pouvez pas commander de billet à cette date :',
-      ];
-
-      if ($langue == 'fr'){
-          return $translationFr[$messageCode];
-      }
-      return "No translation available in this language";
-
-  }
-*/
   public function translateDateTimeIntoValue($date)
   {
       $hour = $date->format("H");
@@ -241,7 +227,7 @@ public function getHolidayTable($year){
 
 
 
-  public function checkHourOfVisit($dateOfVisit) {
+  public function checkHourOfVisit($dateOfVisit, $ticket) {
 
     $hourIsOkCode = $this->isFullDayOrderStillPossible($dateOfVisit);
     /* si heure du jour impose demi-journée ou fermeture imminente */
