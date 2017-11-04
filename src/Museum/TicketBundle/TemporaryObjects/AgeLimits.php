@@ -17,6 +17,11 @@ class AgeLimits
 
     $fileName = "..\src\Museum\TicketBundle\Data\museumAges.csv";
 
+    /* les tests unitaires ne passent pas avec le path de fichier ci-dessus,
+    mais il passent avec le path de fichier ci-dessous.
+    Par contre, avec ce path le fichier n'est plus reconnu par Symfony */
+    //$fileName = "..\MuseumTickets\src\Museum\TicketBundle\Data\museumAges.csv";
+
     if (($handle = fopen($fileName, "r")) !== FALSE) {
 
       while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {

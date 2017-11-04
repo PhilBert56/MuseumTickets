@@ -12,7 +12,6 @@ use Museum\TicketBundle\Entity\Customer;
 
 class DeleteVisitorController extends Controller
 {
-
     /**
      * @Route("/DeleteVisitor/", name = "deleteVisitor")
      */
@@ -43,6 +42,8 @@ class DeleteVisitorController extends Controller
         $locale = $request->getLocale();
 
         return $this->redirect( $this->generateUrl('recapTickets'));
+        /* modifié pour corriger un bug :
+        en cas de delete visitor, on reste toujours sur la même url après suppression du visitor */
         /*
         return $this->render('MuseumTicketBundle:Museum:recapAndPay.html.twig',[
             'recapAndPayForm' => $form->createView(),

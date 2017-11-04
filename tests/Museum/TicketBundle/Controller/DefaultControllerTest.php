@@ -1,6 +1,6 @@
 <?php
 
-namespace Museum\TicketBundle\Tests\Controller;
+namespace tests\Museum\TicketBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -17,6 +17,6 @@ class DefaultControllerTest extends WebTestCase
         $this->assertEquals(500, $client->getResponse()->getStatusCode());
 
 
-        $this->assertContains('Musée', $client->getResponse()->getContent());
+        $this->assertContains('Mus', $client->getResponse()->getContent());
     }
 }

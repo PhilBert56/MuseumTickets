@@ -210,13 +210,15 @@ class Ticket
             $eMailAdress = $customer->getEmail();
             $eMailAdressPourTest = 'phil-bert@club-internet.fr';
 
-            $ticketDescription = 'VISITEUR : ';
+
+            $ticketDescription = 'DATE DE VISITE : '.$this->dateOfVisit->format('d-m-Y');
+            $ticketDescription = $ticketDescription.'  VISITEUR : ';
             $ticketDescription = $ticketDescription.$visitor->getFirstName();
             $ticketDescription = $ticketDescription.' '.$visitor->getName();
             $birthDate = $visitor->getbirthDate()->format('j-n-Y');
             $ticketDescription = $ticketDescription.' né(e) le : '.$birthDate;
             $ticketDescription = $ticketDescription.' prix : '.$this->price.' €';
-
+            $ticketDescription = $ticketDescription.'  CODE TICKET = '.$this->ticketCode;
             $message = \Swift_Message::newInstance()
                 ->setSubject('Billetterie')
                 ->setFrom($mailerUser)

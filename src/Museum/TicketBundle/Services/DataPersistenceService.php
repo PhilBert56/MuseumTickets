@@ -54,10 +54,10 @@ class DataPersistenceService
 
           /* génération du code sur le ticket - solution temporaire */
           $code = $this->encodeTicket($ticket);
+
           $ticket->setTicketCode($code);
 
           $ticket->setCustomer($customer);
-
 
 
           $this->em->persist($visitor);
@@ -68,7 +68,9 @@ class DataPersistenceService
     }
 
     public function encodeTicket($ticket){
-        return '999999999';
+
+        $codeRandom = rand(0,100000000000);
+        return $codeRandom;
     }
 
     public function refreshNumberOfVisitorPerDay($date){
