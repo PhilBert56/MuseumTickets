@@ -23,10 +23,6 @@ class VisitorController extends Controller
     {
         $session = $this->get('session');
 
-        //$locale = $request->getLocale();
-        //$session->set('_locale', $locale);
-
-
         $ticketFolder = $session->get('ticketFolder');
 
         /* création du visiteur et du ticket associé */

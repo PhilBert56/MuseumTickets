@@ -3,7 +3,6 @@
 namespace Museum\TicketBundle\Services;
 use Museum\TicketBundle\Entity\WorkingDay;
 
-
 class DataPersistenceService
 {
 

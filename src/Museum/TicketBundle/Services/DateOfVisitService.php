@@ -8,8 +8,7 @@ class DateOfVisitService
 {
   private $em;
   private $translation;
-  //private $locale;
-
+  
   public function __construct(\Doctrine\ORM\EntityManager $entityManager)
   {
     $this->em = $entityManager;

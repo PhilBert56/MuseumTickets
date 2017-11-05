@@ -24,7 +24,6 @@ class DateOfVisitTest extends WebTestCase {
 
   public function testDateOfVisit(){
 
-    //$dateService = $this->getMock('Museum\TicketBundle\Services\DateOfVisitService');
 
     $kernel = static::createKernel();
     $kernel->boot();
@@ -36,10 +35,8 @@ class DateOfVisitTest extends WebTestCase {
     $dateOfVisit = new \DateTime('2016-10-08'); // date dépassée
     $this->assertSame( 1, $dateService->isDateOk($dateOfVisit));
 
-
     $dateOfVisit = new \DateTime('2017-12-17'); // un dimanche
     $this->assertSame( 21, $dateService->isDateOk($dateOfVisit));
-
 
     $dateOfVisit = new \DateTime('2018-11-01'); // 11 novembre
     $this->assertSame( 33, $dateService->isDateOk($dateOfVisit));
